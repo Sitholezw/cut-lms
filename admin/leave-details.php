@@ -168,7 +168,7 @@ if($stats==1){
 </tr>
 
 <tr>
-<td style="font-size:16px;"><b>Admin Remark: </b></td>
+<td style="font-size:16px;"><b>Admin Remarks: </b></td>
 <td colspan="5"><?php
 if($result->AdminRemark==""){
   echo "waiting for Approval";  
