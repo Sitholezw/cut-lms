@@ -154,11 +154,11 @@ foreach($results as $result)
 <div class="col m6">
 <div class="row">
 <div class="input-field col m6 s12">
+<label for="gender">Gender</label>
 <select  name="gender" autocomplete="off">
 <option value="<?php echo htmlentities($result->Gender);?>"><?php echo htmlentities($result->Gender);?></option>                                          
 <option value="Male">Male</option>
 <option value="Female">Female</option>
-<option value="Other">Other</option>
 </select>
 </div>
 
