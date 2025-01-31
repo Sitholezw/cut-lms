@@ -50,6 +50,11 @@ $msg="Employee record updated Successfully";
         <meta name="description" content="Responsive Admin Dashboard Template" />
         <meta name="keywords" content="admin,dashboard" />
         <meta name="author" content="Steelcoders" />
+
+        
+          <!-- favicoins -->
+    <link href="../assets/images/favicon.png" rel="icon">
+    <link href="../assets/images/favicon.png" rel="apple-touch-icon">
         
         <!-- Styles -->
         <link type="text/css" rel="stylesheet" href="../assets/plugins/materialize/css/materialize.min.css"/>
@@ -95,7 +100,7 @@ $msg="Employee record updated Successfully";
                             <div class="card-content">
                                 <form id="example-form" method="post" name="updatemp">
                                     <div>
-                                        <h3>Update Employee Info</h3>
+                                        <h3>Update Employee Details</h3>
                                            <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
                 else if($msg){?><div class="succWrap"><strong>SUCCESS</strong> : <?php echo htmlentities($msg); ?> </div><?php }?>
                                         <section>
@@ -116,7 +121,7 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?> 
  <div class="input-field col  s12">
-<label for="empcode">Employee Code(Must be unique)</label>
+<label for="empcode">Employee Code(Must be unique per department)</label>
 <input  name="empcode" id="empcode" value="<?php echo htmlentities($result->EmpId);?>" type="text" autocomplete="off" readonly required>
 <span id="empid-availability" style="font-size:12px;"></span> 
 </div>
@@ -134,14 +139,14 @@ foreach($results as $result)
 
 <div class="input-field col s12">
 <label for="email">Email</label>
-<input  name="email" type="email" id="email" value="<?php echo htmlentities($result->EmailId);?>" readonly autocomplete="off" required>
+<input  name="email" type="email" id="email" value="<?php echo htmlentities($result->EmailId);?>"  autocomplete="off" required>
 <span id="emailid-availability" style="font-size:12px;"></span> 
 </div>
 
 <div class="input-field col s12">
 <label for="phone">Mobile number</label>
-<input id="phone" name="mobileno" type="tel" value="<?php echo htmlentities($result->Phonenumber);?>" maxlength="10" autocomplete="off" required>
- </div>
+<input id="phone" name="mobileno" type="tel" value="<?php echo htmlentities($result->Phonenumber);?>" maxlength="10" pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number" autocomplete="off" required>
+</div>
 
 </div>
 </div>
