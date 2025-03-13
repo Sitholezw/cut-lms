@@ -1,11 +1,11 @@
 {
     "functions": {
-      "public/**/*.php": {
+      "api/**/*.php": {
         "runtime": "vercel-php@0.6.0"
       }
     },
     "routes": [
-      { "src": "/(.*)",  "dest": "/PUBLIC/index.php" },
+      { "src": "/(.*)",  "dest": "/api/index.php" },
       { "src": "/css/style.css", "dest": "/css/style.css" },
       { "src": "/js/script.js", "dest": "/js/script.js" }]
   }
