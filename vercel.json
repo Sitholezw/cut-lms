@@ -1,7 +1,7 @@
 {
     "functions": {
       "api/*.php": {
-        "runtime": "vercel-php@0.6.0"
+        "runtime": "now-php@1.0.0"
       },
       "api/*.js": {
         "runtime": "nodejs20.x"
