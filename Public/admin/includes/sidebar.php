@@ -67,9 +67,10 @@
                  
               
                 </ul>
-                   <div class="footer">
-                    <p class="copyright"></> By esithole@cut</p>
-                
-                </div>
+                <div class="footer ">
+                <p class="copyright ">  2025. All Rights Reserved. <br> Designed & Developed
+                </p> By esithole@cut</p> 
+
+            </div>
                 </div>
             </aside>

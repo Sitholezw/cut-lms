@@ -123,37 +123,34 @@ if (isset($_POST['signin'])) {
                         <span class="chapter-title">CUT | Leave Management System</span>
                     </div>
 
-
-                    </form>
-
-
                 </div>
             </nav>
         </header>
 
 
-        <aside id="slide-out" class="side-nav white fixed">
-            <div class="side-nav-wrapper">
+        <aside id="slide-out" class="side-nav futuristic fixed">
+            <div class="side-nav-wrapper futuristic-bg">
 
+            <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
+                <li>&nbsp;</li>
+                <li class="no-padding"><a class="waves-effect waves-light futuristic-text" href="index.php"><i
+                    class="material-icons futuristic-icon">account_box</i>Staff Login</a></li>
+                <li class="no-padding"><a class="waves-effect waves-light futuristic-text" href="forgot-password.php"><i
+                    class="material-icons futuristic-icon">lock_clock</i>Forgot Password?</a></li>
 
-                <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-                    <li>&nbsp;</li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="index.php"><i
-                                class="material-icons">account_box</i>Employee Login</a></li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="forgot-password.php"><i
-                                class="material-icons">lock_clock</i>Forgot Password?</a></li>
+                <li class="no-padding"><a class="waves-effect waves-light futuristic-text" href="admin/"><i
+                    class="material-icons futuristic-icon">account_box</i>Admin Login</a></li>
 
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="admin/"><i
-                                class="material-icons">account_box</i>Admin Login</a></li>
+            </ul>
+            <div class="footer futuristic-footer">
+                <p class="copyright futuristic-text">  2025. All Rights Reserved. <br> Designed & Developed
+                </p> By esithole@cut</p> 
 
-                </ul>
-                <div class="footer">
-                    <p class="copyright">
-                        </> By esithole@cut</p>
-
-                </div>
+            </div>
             </div>
         </aside>
+                    
+        </aside> 
         <main class="mn-inner">
             <div class="row">
                 <div class="col s12">
@@ -164,7 +161,7 @@ if (isset($_POST['signin'])) {
                         <div class="card white darken-1">
 
                             <div class="card-content ">
-                                <span class="card-title" style="font-size:20px;">Employee Login</span>
+                                <span class="card-title" style="font-size:20px;">Staff Login</span>
                                 <?php if ($msg) { ?>
                                     <div class="errorWrap"><strong>Error</strong> : <?php echo htmlentities($msg); ?> </div>
                                 <?php } ?>
@@ -173,7 +170,7 @@ if (isset($_POST['signin'])) {
                                         <div class="input-field col s12">
                                             <input id="username" type="text" name="username" class="validate"
                                                 autocomplete="off" required>
-                                            <label for="email">Email Address</label>
+                                            <label for="username">Email Address</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="password" type="password" class="validate" name="password"

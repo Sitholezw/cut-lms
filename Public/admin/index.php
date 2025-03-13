@@ -52,7 +52,7 @@ if (isset($_POST['signin'])) {
         body.signin-page {
             position: relative;
             overflow: hidden;
-            background-color: white;
+            background: #FFFFFF;
         }
 
         body.signin-page::before {
@@ -62,13 +62,15 @@ if (isset($_POST['signin'])) {
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: white;
-            filter: blur(3px); /* Adjust the blur value as needed */
+            background: #FFFFFF;
+            opacity: 0.5;
             z-index: -1;
         }
     </style>
     
 </head>
+    
+
 
 <body class="signin-page">
 
@@ -80,9 +82,9 @@ if (isset($_POST['signin'])) {
             <div class="valign">
                 <div class="row">
 
-                    <div class="col s12 m6 l4 offset-l4 offset-m3">
-                        <div class="card white darken-2">
-                            <div class="card-content ">
+                    <div class="col s12 m8 l6 offset-l3 offset-m2">
+                        <div class="card white darken-2" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                            <div class="card-content">
                                 <span class="card-title">Admin Sign In</span>
                                 <div class="row">
                                     <form class="col s12" name="signin" method="post">
@@ -97,7 +99,6 @@ if (isset($_POST['signin'])) {
                                             <label for="password">Password</label>
                                         </div>
                                         <div class="col s12 right-align m-t-sm">
-
                                             <input type="submit" name="signin" value="Sign in"
                                                 class="waves-effect waves-light btn indigo m-b-xs" style="width: 100%;">
                                         </div>
@@ -117,6 +118,24 @@ if (isset($_POST['signin'])) {
     <script src="../assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
     <script src="../assets/plugins/jquery-blockui/jquery.blockui.js"></script>
     <script src="../assets/js/alpha.min.js"></script>
+
+    <!-- Footer -->
+    <footer class="page-footer" style="position: fixed; bottom: 0; width: 100%; background-color: #3f51b5; color: white;">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2025 CUT LMS. All rights reserved.
+                <span class="right">Follow us on 
+                    <a href="https://facebook.com" target="_blank" style="color: white;">Facebook</a> | 
+                    <a href="https://twitter.com" target="_blank" style="color: white;">Twitter</a> | 
+                    <a href="https://instagram.com" target="_blank" style="color: white;">Instagram</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+                </span>
+            </div>
+        </div>
+    </footer>
 
 </body>
 

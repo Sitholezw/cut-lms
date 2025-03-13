@@ -53,7 +53,7 @@ else{
                         <div class="card stats-card">
                             <div class="card-content">
                             
-                                <span class="card-title">Totle Regd Employee</span>
+                                <span class="card-title">Total Registered Employee</span>
                                 <span class="stats-counter">
 <?php
 $sql = "SELECT id from tblemployees";
@@ -203,7 +203,7 @@ $approvedleaves=$query->rowCount();
 
                                              <th width="180">Posting Date</th>                 
                                             <th>Status</th>
-                                            <th align="center">Action</th>
+                                            <th style="text-align: center;">Action</th>
                                         </tr>
                                     </thead>
                                  
