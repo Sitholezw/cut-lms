@@ -48,7 +48,7 @@ $error="Something went wrong. Please try again";
     <head>
         
         <!-- Title -->
-        <title>Employee | Apply Leave</title>
+        <title>Employee | Leave Application</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <meta charset="UTF-8">
@@ -130,18 +130,20 @@ foreach($results as $result)
 
 
 <div class="input-field col m6 s12">
-<label for="fromdate">From  Date</label>
+<label for="fromdate">From</label>
 <input placeholder="" id="mask1" name="fromdate" class="masked" type="text" data-inputmask="'alias': 'date'" required>
 </div>
+
 <div class="input-field col m6 s12">
-<label for="todate">To Date</label>
+<label for="todate">To</label>
 <input placeholder="" id="mask1" name="todate" class="masked" type="text" data-inputmask="'alias': 'date'" required>
 </div>
-<div class="input-field col m12 s12">
-<label for="birthdate">Description</label>    
 
-<textarea id="textarea1" name="description" class="materialize-textarea" length="500" required></textarea>
+<div class="input-field col m12 s12">
+<label for="birthdate">Leave Description</label>    
+<textarea id="textarea1" name="description" class="materialize-textarea" length="200" required></textarea>
 </div>
+
 </div>
       <button type="submit" name="apply" id="apply" class="waves-effect waves-light btn indigo m-b-xs">Apply</button>                                             
 

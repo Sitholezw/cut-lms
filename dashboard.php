@@ -54,7 +54,7 @@ if (strlen($_SESSION['emplogin']) == 0) {
                         <div class="col s12 m12 l4">
                             <div class="card stats-card">
                                 <div class="card-content">
-                                    <span class="card-title">Total Leaves</span>
+                                    <span class="card-title">Total Leaves  Applied </span>
                                     <?php $eid = $_SESSION['eid'];
                                     $sql = "SELECT id from  tblleaves where empid ='$eid'";
                                     $query = $dbh->prepare($sql);

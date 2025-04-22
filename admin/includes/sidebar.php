@@ -67,10 +67,9 @@
                  
               
                 </ul>
-                <div class="footer ">
-                <p class="copyright ">  2025. All Rights Reserved. <br> Designed & Developed
+                <div class="footer futuristic-footer">
+                <p class="copyright futuristic-text">© <?php echo date("Y"); ?> All Rights Reserved. <br> Designed & Developed
                 </p> By esithole@cut</p> 
 
             </div>
-                </div>
             </aside>
