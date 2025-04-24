@@ -74,7 +74,7 @@ if (isset($_POST['signin'])) {
 
 <body class="signin-page">
 
-    <div class="mn-content valign-wrapper">
+    <div class="mn-content valign-wrapper" style="background-image: url(../assets/images/background.jpg); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh; filter: blur(0.1px);">
 
         <main class="mn-inner container">
             <div class="row" style="text-align:center"><img src="../assets/images/favicon.png" alt="Logo"
@@ -82,25 +82,26 @@ if (isset($_POST['signin'])) {
             <div class="valign">
                 <div class="row">
 
-                    <div class="col s12 m8 l6 offset-l3 offset-m2">
+                    <div class="col s12 m8 l6 offset-l3 offset-m2" style="opacity: 0.5;">
                         <div class="card white darken-2" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                            <div class="card-content">
-                                <span class="card-title">Admin Sign In</span>
-                                <div class="row">
+                            <div class="card-content" style="opacity:1">
+                                <span class="card-title" style="opacity:1;  color: #3f51b5;font-weight: bold;font-size: 16px">Admin Sign In</span>
+                                <div class="row" style="color: #000000; font-weight: bold;">
                                     <form class="col s12" name="signin" method="post">
                                         <div class="input-field col s12">
                                             <input id="username" type="text" name="username" class="validate"
-                                                autocomplete="off" required>
-                                            <label for="email">Username</label>
+                                                autocomplete="off" required style="font-size: 18px; font-weight: bold; color: #000;">
+                                            <label for="email" style="font-size: 18px; font-weight: bold; color: #3f51b5;">Username</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="password" type="password" class="validate" name="password"
-                                                autocomplete="off" required>
-                                            <label for="password">Password</label>
+                                                autocomplete="off" required style="font-size: 18px; font-weight: bold; color: #000;">
+                                            <label for="password" style="font-size: 18px; font-weight: bold; color: #3f51b5;">Password</label>
                                         </div>
                                         <div class="col s12 right-align m-t-sm">
                                             <input type="submit" name="signin" value="Sign in"
-                                                class="waves-effect waves-light btn indigo m-b-xs" style="width: 100%;">
+                                                class="waves-effect waves-light btn indigo m-b-xs" 
+                                                style="width: 100%; font-size: 18px; font-weight: bold; background-color: #3f51b5; color: #fff;">
                                         </div>
                                     </form>
                                 </div>
@@ -120,8 +121,8 @@ if (isset($_POST['signin'])) {
     <script src="../assets/js/alpha.min.js"></script>
 
     <!-- Footer -->
-    <footer class="page-footer" style="position: fixed; bottom: 0; width: 100%; background-color: #3f51b5; color: white;">
-        <div class="footer-copyright">
+    <footer class="page-footer" style="position: fixed; bottom: 0; width: 100%; z-index: 1000; background-color: #3f51b5; color: white;">
+        <div class="footer-copyright"  style="background-color: #3f51b5;">
             <div class="container">
                 © 2025 CUT LMS. All rights reserved.
                 <span class="right">Follow us on 

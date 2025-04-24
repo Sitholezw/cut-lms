@@ -2,7 +2,13 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 if (isset($_POST['signin'])) {
+    if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die('CSRF token validation failed');
+    }
     $uname = $_POST['username'];
     $password = md5($_POST['password']);
     $sql = "SELECT EmailId,Password,Status,id FROM tblemployees WHERE EmailId=:uname and Password=:password";
@@ -59,7 +65,7 @@ if (isset($_POST['signin'])) {
 
 </head>
 
-<body>
+<body  style="background-image: url('assets/images/background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh; filter: blur(0.1px);">
     <div class="loader-bg"></div>
     <div class="loader">
         <div class="preloader-wrapper big active">
@@ -129,9 +135,9 @@ if (isset($_POST['signin'])) {
 
 
         <aside id="slide-out" class="side-nav futuristic fixed">
-            <div class="side-nav-wrapper futuristic-bg">
+            <div class="side-nav-wrapper futuristic-bg" >
 
-            <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
+            <ul class="sidebar-menu collapsible collapsi`ble-accordion" data-collapsible="accordion">
                 <li>&nbsp;</li>
                 <li class="no-padding"><a class="waves-effect waves-light futuristic-text" href="index.php"><i
                     class="material-icons futuristic-icon">account_box</i>Staff Login</a></li>
@@ -142,11 +148,12 @@ if (isset($_POST['signin'])) {
                     class="material-icons futuristic-icon">account_box</i>Admin Login</a></li>
 
             </ul>
+            <!-- 
             <div class="footer futuristic-footer">
                 <p class="copyright futuristic-text">© <?php echo date("Y"); ?> All Rights Reserved. <br> Designed & Developed
                 </p> By esithole@cut</p> 
-
             </div>
+            -->
             </div>
         </aside>
                     
@@ -163,7 +170,9 @@ if (isset($_POST['signin'])) {
                             <div class="card-content ">
                                 <span class="card-title" style="font-size:20px;">Staff Login</span>
                                 <?php if ($msg) { ?>
-                                    <div class="errorWrap"><strong>Error</strong> : <?php echo htmlentities($msg); ?> </div>
+                                    <div class="card-panel red lighten-4 red-text text-darken-4">
+                                        <strong>Error:</strong> <?php echo htmlentities($msg); ?>
+                                    </div>
                                 <?php } ?>
                                 <div class="row">
                                     <form class="col s12" name="signin" method="post">
@@ -177,6 +186,7 @@ if (isset($_POST['signin'])) {
                                                 autocomplete="off" required>
                                             <label for="password">Password</label>
                                         </div>
+                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                                         <div class="col s12 m-t-sm">
 
                                             <input type="submit" name="signin" value="Sign in"
@@ -193,6 +203,20 @@ if (isset($_POST['signin'])) {
 
     </div>
     <div class="left-sidebar-hover"></div>
+
+     <!-- Footer -->
+     <footer class="page-footer" style="position: fixed; bottom: 0; width: 100%; z-index: 1000; background-color: #3f51b5; color: white;">
+        <div class="footer-copyright"  style="background-color: #3f51b5;">
+            <div class="container">
+                © 2025 CUT LMS. All rights reserved.
+                <span class="right">Follow us on 
+                    <a href="https://facebook.com" target="_blank" style="color: white;">Facebook</a> | 
+                    <a href="https://twitter.com" target="_blank" style="color: white;">Twitter</a> | 
+                    <a href="https://instagram.com" target="_blank" style="color: white;">Instagram</a>
+                </span>
+            </div>
+        </div>
+    </footer>
 
     <!-- Javascripts -->
     <script src="assets/plugins/jquery/jquery-2.2.0.min.js"></script>

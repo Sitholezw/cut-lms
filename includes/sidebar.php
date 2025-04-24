@@ -45,9 +45,9 @@ foreach($results as $result)
                  
                    
                 </ul>
-                <div class="footer futuristic-footer">
-                <p class="copyright futuristic-text">© <?php echo date("Y"); ?> All Rights Reserved. <br> Designed & Developed
-                </p> By esithole@cut</p> 
+                <!-- <div class="footer futuristic-footer">
+                                            <p class="copyright futuristic-text">© <?php echo date("Y"); ?> All Rights Reserved. <br> Designed & Developed
+                                            </p> By esithole@cut1</p> 
 
-            </div>
-                </div>     </aside>
+                                    </div> -->
+                                            </div>     </aside>

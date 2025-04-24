@@ -62,7 +62,7 @@ $msg="Your Password succesfully changed";
         </style>
         
     </head>
-    <body>
+    <body style="background-image: url('assets/images/background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh; filter: blur(0.1px);">
         <div class="loader-bg"></div>
         <div class="loader">
             <div class="preloader-wrapper big active">
