@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 error_reporting(0);
@@ -62,117 +61,88 @@ $msg="Your Password succesfully changed";
         </style>
         
     </head>
-    <body style="background-image: url('assets/images/background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh; filter: blur(0.1px);">
-        <div class="loader-bg"></div>
-        <div class="loader">
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
+    <body style="display: flex; flex-direction: column; min-height: 100vh; background-image: url('assets/images/background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; filter: blur(0.1px);">
+    <div class="loader-bg"></div>
+    <div class="loader">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
                     <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                    <div class="circle"></div>
-                    </div>
                 </div>
-                <div class="spinner-layer spinner-spinner-teal lighten-1">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
+                <div class="gap-patch">
                     <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                    <div class="circle"></div>
-                    </div>
                 </div>
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
+                <div class="circle-clipper right">
                     <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                    <div class="circle"></div>
-                    </div>
-                </div>
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                    <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                    <div class="circle"></div>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="mn-content fixed-sidebar">
-            <header class="mn-header navbar-fixed">
-                <nav class="#82b1ff blue accent-1">
-                    <div class="nav-wrapper row">
-                        <section class="material-design-hamburger navigation-toggle">
-                            <a href="#" data-activates="slide-out" class="button-collapse show-on-large material-design-hamburger__icon">
-                                <span class="material-design-hamburger__layer"></span>
-                            </a>
-                        </section>
-                        <div class="header-title col s3">      
-                            <span class="chapter-title">CUT | Leave Management System</span>
-                        </div>
-                      
-                           
-                        </form>
-                     
-                        
+    </div>
+
+    <div class="mn-content fixed-sidebar" style="flex: 1;">
+        <header class="mn-header navbar-fixed">
+            <nav class="#82b1ff blue accent-1">
+                <div class="nav-wrapper row">
+                    <section class="material-design-hamburger navigation-toggle">
+                        <a href="#" data-activates="slide-out" class="button-collapse show-on-large material-design-hamburger__icon">
+                            <span class="material-design-hamburger__layer"></span>
+                        </a>
+                    </section>
+                    <div class="header-title col s3">
+                        <span class="chapter-title">CUT | Leave Management System</span>
                     </div>
-                </nav>
-            </header>
-           
-           
-            <aside id="slide-out" class="side-nav white fixed">
-                <div class="side-nav-wrapper">
-                   
-                  
-                <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-                    <li>&nbsp;</li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="index.php"><i class="material-icons">account_box</i>Stuff Login</a></li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="forgot-password.php"><i class="material-icons">lock_clock</i>Forgot Password?</a></li>
-                
-                       <li class="no-padding"><a class="waves-effect waves-grey" href="admin/"><i class="material-icons">account_box</i>Admin Login</a></li>
-                
-                </ul>
-                <div class="footer futuristic-footer">
-                <p class="copyright futuristic-text">  2025. All Rights Reserved. <br> Designed & Developed
-                </p> By esithole@cut</p> 
-
-            </div>
                 </div>
-            </aside>
-            <main class="mn-inner">
-                <div class="row">
-                    <div class="col s12">
+            </nav>
+        </header>
 
-                          <div class="col s12 m6 l6 offset-l2 offset-m3">
-                             <div style="text-align:center"><img src="assets\images\favicon.png"
-                                alt="Logo" width="150px"></div>
-                              <div class="card white darken-8">
+        <!-- Side Panel -->
+        <aside id="slide-out" class="side-nav fixed">
+            <div class="side-nav-wrapper">
+                <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
+                    <li class="no-padding">
+                        <a class="waves-effect waves-light" href="index.php">
+                            <i class="material-icons">home</i>Home
+                        </a>
+                    </li>
+                    <li class="no-padding">
+                        <a class="waves-effect waves-light" href="forgot-password.php">
+                            <i class="material-icons">lock</i>Forgot Password
+                        </a>
+                    </li>
+                    <li class="no-padding">
+                        <a class="waves-effect waves-light" href="admin/">
+                            <i class="material-icons">admin_panel_settings</i>Admin Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
 
-                                  <div class="card-content " style="opacity: 0.1;">
-                                    <span class="card-title" style="font-size:20px;">Reset your password</span>
-                                    <?php if($msg){?><div class="succWrap"><strong>Success </strong> : <?php echo htmlentities($msg); ?> </div><?php }?>
-                                    <div class="row">
-                                        <form class="col s12" name="signin" method="post">
-                                            <div class="input-field col s12">
-                                                <input id="empid" type="text" name="empid" class="validate" autocomplete="off" required>
-                                                <label for="empid">Employee ID</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <input id="emailid" type="email" class="validate" name="emailid" autocomplete="off" required>
-                                                <label for="emailid">Email Address</label>
-                                            </div>
-                                            <div class="col s12 m-t-sm">
-                                                <input type="submit" name="submit" value="Reset" class="waves-effect waves-light btn blue m-b-xs" style="width: 100%;">
-                                            </div>
-                                        </form>
-                                    </div>
-                                  </div>
+        <main class="mn-inner">
+            <div class="row">
+                <div class="col s12">
+                    <div class="col s12 m6 l6 offset-l2 offset-m3">
+                        <div style="text-align:center"><img src="assets/images/favicon.png" alt="Logo" width="150px"></div>
+                        <div class="card white darken-10">
+                            <div class="card-content" style="background-color: rgba(255, 255, 255, 0.6); margin-bottom: 100px;">
+                                <span class="card-title" style="font-size:20px;">Reset your password</span>
+                                <?php if($msg){?><div class="succWrap"><strong>Success </strong> : <?php echo htmlentities($msg); ?> </div><?php }?>
+                                <div class="row">
+                                    <form class="col s12" name="signin" method="post">
+                                        <div class="input-field col s12">
+                                            <input id="empid" type="text" name="empid" class="validate" autocomplete="off" required>
+                                            <label for="empid">Employee ID</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input id="emailid" type="email" class="validate" name="emailid" autocomplete="off" required>
+                                            <label for="emailid">Email Address</label>
+                                        </div>
+                                        <div class="col s12 m-t-sm">
+                                            <input type="submit" name="submit" value="Reset" class="waves-effect waves-light btn blue m-b-xs" style="width: 100%;">
+                                        </div>
+                                    </form>
+                                </div>
+                              </div>
 <?php if(isset($_POST['submit']))
 {
 $empid=$_POST['empid'];
@@ -225,14 +195,13 @@ foreach ($results as $result) {
                           </div>
                     </div>
                 </div>
-            </main>
-            
-        </div>
-        <div class="left-sidebar-hover"></div>
+            </div>
+        </main>
+    </div>
 
-        <!-- Footer -->
-     <footer class="page-footer" style="position: fixed; bottom: 0; width: 100%; z-index: 1000; background-color: #3f51b5; color: white;">
-        <div class="footer-copyright"  style="background-color: #3f51b5;">
+    <!-- Footer -->
+    <footer class="page-footer" style="background-color: #3f51b5; color: white;">
+        <div class="footer-copyright">
             <div class="container">
                 © 2025 CUT LMS. All rights reserved.
                 <span class="right">Follow us on 
@@ -243,13 +212,13 @@ foreach ($results as $result) {
             </div>
         </div>
     </footer>
-        
-        <!-- Javascripts -->
-        <script src="assets/plugins/jquery/jquery-2.2.0.min.js"></script>
-        <script src="assets/plugins/materialize/js/materialize.min.js"></script>
-        <script src="assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
-        <script src="assets/plugins/jquery-blockui/jquery.blockui.js"></script>
-        <script src="assets/js/alpha.min.js"></script>
+
+    <!-- Javascripts -->
+    <script src="assets/plugins/jquery/jquery-2.2.0.min.js"></script>
+    <script src="assets/plugins/materialize/js/materialize.min.js"></script>
+    <script src="assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
+    <script src="assets/plugins/jquery-blockui/jquery.blockui.js"></script>
+    <script src="assets/js/alpha.min.js"></script>
         
     </body>
 </html>
