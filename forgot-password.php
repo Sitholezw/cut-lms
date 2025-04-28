@@ -154,25 +154,24 @@ $msg="Your Password succesfully changed";
                                 alt="Logo" width="150px"></div>
                               <div class="card white darken-8">
 
-                                  <div class="card-content ">
-                                      <span class="card-title" style="font-size:20px;">Enter your Details to reset</span>
-                                         <?php if($msg){?><div class="succWrap"><strong>Success </strong> : <?php echo htmlentities($msg); ?> </div><?php }?>
-                                       <div class="row">
-                                           <form class="col s12" name="signin" method="post">
-                                               <div class="input-field col s12">
-                                                   <input id="empid" type="text" name="empid" class="validate" autocomplete="off" required >
-                                                   <label for="email">Employee ID</label>
-                                               </div>
-                                               <div class="input-field col s12">
-                                                   <input id="password" type="text" class="validate" name="emailid" autocomplete="off" required>
-                                                   <label for="password">Email Address</label>
-                                               </div>
-                                               <div class="col s12 m-t-sm">
-                                                
-                                                   <input type="submit" name="submit" value="Reset" class="waves-effect waves-light btn blue m-b-xs" style="width: 100%;">
-                                               </div>
-                                           </form>
-                                      </div>
+                                  <div class="card-content " style="opacity: 0.1;">
+                                    <span class="card-title" style="font-size:20px;">Reset your password</span>
+                                    <?php if($msg){?><div class="succWrap"><strong>Success </strong> : <?php echo htmlentities($msg); ?> </div><?php }?>
+                                    <div class="row">
+                                        <form class="col s12" name="signin" method="post">
+                                            <div class="input-field col s12">
+                                                <input id="empid" type="text" name="empid" class="validate" autocomplete="off" required>
+                                                <label for="empid">Employee ID</label>
+                                            </div>
+                                            <div class="input-field col s12">
+                                                <input id="emailid" type="email" class="validate" name="emailid" autocomplete="off" required>
+                                                <label for="emailid">Email Address</label>
+                                            </div>
+                                            <div class="col s12 m-t-sm">
+                                                <input type="submit" name="submit" value="Reset" class="waves-effect waves-light btn blue m-b-xs" style="width: 100%;">
+                                            </div>
+                                        </form>
+                                    </div>
                                   </div>
 <?php if(isset($_POST['submit']))
 {
@@ -230,6 +229,20 @@ foreach ($results as $result) {
             
         </div>
         <div class="left-sidebar-hover"></div>
+
+        <!-- Footer -->
+     <footer class="page-footer" style="position: fixed; bottom: 0; width: 100%; z-index: 1000; background-color: #3f51b5; color: white;">
+        <div class="footer-copyright"  style="background-color: #3f51b5;">
+            <div class="container">
+                © 2025 CUT LMS. All rights reserved.
+                <span class="right">Follow us on 
+                    <a href="https://facebook.com" target="_blank" style="color: white;">Facebook</a> | 
+                    <a href="https://twitter.com" target="_blank" style="color: white;">Twitter</a> | 
+                    <a href="https://instagram.com" target="_blank" style="color: white;">Instagram</a>
+                </span>
+            </div>
+        </div>
+    </footer>
         
         <!-- Javascripts -->
         <script src="assets/plugins/jquery/jquery-2.2.0.min.js"></script>
