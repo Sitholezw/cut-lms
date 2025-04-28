@@ -200,10 +200,10 @@ foreach ($results as $result) {
     </div>
 
     <!-- Footer -->
-    <footer class="page-footer" style="background-color: #3f51b5; color: white;">
+    <footer class="page-footer" style="background-color: #3f51b5; color: white; margin-top: auto;">
         <div class="footer-copyright">
             <div class="container">
-                © 2025 CUT LMS. All rights reserved.
+                © 2025 CUT-LMS. All rights reserved.
                 <span class="right">Follow us on 
                     <a href="https://facebook.com" target="_blank" style="color: white;">Facebook</a> | 
                     <a href="https://twitter.com" target="_blank" style="color: white;">Twitter</a> | 

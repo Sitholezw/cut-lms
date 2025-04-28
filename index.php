@@ -208,7 +208,7 @@ if (isset($_POST['signin'])) {
      <footer class="page-footer" style="position: fixed; bottom: 0; width: 100%; z-index: 1000; background-color: #3f51b5; color: white;">
         <div class="footer-copyright"  style="background-color: #3f51b5;">
             <div class="container">
-                © 2025 CUT LMS. All rights reserved.
+                © 2025 CUT-LMS. All rights reserved.
                 <span class="right">Follow us on 
                     <a href="https://facebook.com" target="_blank" style="color: white;">Facebook</a> | 
                     <a href="https://twitter.com" target="_blank" style="color: white;">Twitter</a> | 
