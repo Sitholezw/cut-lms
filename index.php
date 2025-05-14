@@ -102,46 +102,39 @@ if (isset($_POST['signin'])) {
             <div class="row">
                 <div class="col s12">
                     <div class="col s12 m6 l6 offset-l2 offset-m3">
-                        <div style="text-align:center"><img src="assets\images\favicon.png" alt="Logo" width="150px"></div>
-
-                        <div class="card white darken-1">
-                            <div class="card-content">
-                                <span class="card-title" style="font-size:20px;">Staff Login</span>
+                        <div class="card white darken-1" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+                            <div class="card-content" style="padding: 30px;">
+                                <div style="text-align: center; margin-bottom: 20px;">
+                                    <img src="assets/images/favicon.png" alt="Logo" width="100px" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                                </div>
+                                <span class="card-title" style="font-size: 24px; font-weight: bold; color: #3f51b5; text-align: center; display: block; margin-bottom: 20px;">
+                                    Staff Login
+                                </span>
                                 <?php if ($msg) { ?>
-                                    <div class="card-panel red lighten-4 red-text text-darken-4">
+                                    <div class="card-panel red lighten-4 red-text text-darken-4" style="border-radius: 8px; padding: 10px;">
                                         <strong>Error:</strong> <?php echo htmlentities($msg); ?>
                                     </div>
                                 <?php } ?>
-                                <div class="row">
-                                    <form class="col s12" name="signin" method="post">
-                                        <div class="input-field col s12">
-                                            <input id="username" type="text" name="username" class="validate" autocomplete="off" required>
-                                            <label for="username">Email Address</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input id="password" type="password" class="validate" name="password" autocomplete="off" required>
-                                            <label for="password">Password</label>
-                                        </div>
-                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-                                        <div class="col s12 m-t-sm">
-                                            <input type="submit" name="signin" value="Sign in" class="waves-effect waves-light btn indigo m-b-xs" style="width: 100%;">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="row" style="margin-top: 20px;">
-                                    <ul class="sidebar-menu">
-                                        <li class="no-padding">
-                                            <a class="waves-effect waves-light" href="forgot-password.php" style="text-decoration:wavy; color: #3f51b5; font-weight: bold;">
-                                                Forgot Password?
-                                            </a>
-                                        </li>
-                                        <!-- Uncomment if Admin Login is needed -->
-                                        <!-- <li class="no-padding">
-                                            <a class="waves-effect waves-light" href="admin/">
-                                                <i class="material-icons">admin_panel_settings</i> Admin Login
-                                            </a>
-                                        </li> -->
-                                    </ul>
+                                <form class="col s12" name="signin" method="post" style="margin-top: 20px;">
+                                    <div class="input-field col s12">
+                                        <input id="username" type="text" name="username" class="validate" autocomplete="off" required style="font-size: 16px;">
+                                        <label for="username" style="font-size: 16px;">Email Address</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input id="password" type="password" class="validate" name="password" autocomplete="off" required style="font-size: 16px;">
+                                        <label for="password" style="font-size: 16px;">Password</label>
+                                    </div>
+                                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                                    <div class="col s12" style="margin-top: 20px;">
+                                        <button type="submit" name="signin" class="waves-effect waves-light btn indigo" style="width: 100%; font-size: 18px; font-weight: bold; background-color: #3f51b5;">
+                                            Sign In
+                                        </button>
+                                    </div>
+                                </form>
+                                <div class="row" style="margin-top: 20px; text-align: center;">
+                                    <a href="forgot-password.php" style="text-decoration: underline; color: #3f51b5; font-weight: bold; font-size: 16px;">
+                                        Forgot Password?
+                                    </a>
                                 </div>
                             </div>
                         </div>
