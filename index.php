@@ -147,6 +147,13 @@ if (isset($_POST['signin'])) {
     <script src="assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
     <script src="assets/plugins/jquery-blockui/jquery.blockui.js"></script>
     <script src="assets/js/alpha.min.js"></script>
+    <script>
+        document.querySelector('form[name="signin"]').addEventListener('submit', function () {
+            const button = document.querySelector('button[name="signin"]');
+            button.disabled = true;
+            button.innerHTML = 'Signing In...';
+        });
+    </script>
 </body>
 
 </html>
