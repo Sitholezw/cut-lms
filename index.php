@@ -150,21 +150,6 @@ if (isset($_POST['signin'])) {
             </div>
         </main>
     </div>
-
-    <!-- Footer -->
-    <footer class="page-footer" style="position:relative; bottom: 0; width: 100%; z-index: 1000; background-color: #3f51b5; color: white;">
-        <div class="footer-copyright" style="background-color: #3f51b5;">
-            <div class="container">
-                © 2025 CUT-LMS. All rights reserved.
-                <span class="right">Follow us on 
-                    <a href="https://facebook.com" target="_blank" style="color: white;">Facebook</a> | 
-                    <a href="https://twitter.com" target="_blank" style="color: white;">Twitter</a> | 
-                    <a href="https://instagram.com" target="_blank" style="color: white;">Instagram</a>
-                </span>
-            </div>
-        </div>
-    </footer>
-
     <!-- Javascripts -->
     <script src="assets/plugins/jquery/jquery-2.2.0.min.js"></script>
     <script src="assets/plugins/materialize/js/materialize.min.js"></script>
