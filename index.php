@@ -62,10 +62,15 @@ if (isset($_POST['signin'])) {
     <link href="assets/css/alpha.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
 
+    <style>
+        .card {
+            background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+        }
+    </style>
 
 </head>
 
-<body style="background-image: url('assets/images/background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh; filter: blur(0.1px);">
+<body style="background-image: url('assets/images/background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh; filter: blur(0.1px);" loading="lazy">
     <div class="loader-bg"></div>
     <div class="loader">
         <div class="preloader-wrapper big active">
@@ -116,7 +121,7 @@ if (isset($_POST['signin'])) {
                             <?php } ?>
                             <form class="col s12" name="signin" method="post" style="margin-top: 20px;">
                                 <div class="input-field col s12">
-                                    <input id="username" type="text" name="username" class="validate" autocomplete="off" required style="font-size: 16px;">
+                                    <input id="username" type="email" name="username" class="validate" autocomplete="off" required aria-label="Email Address">
                                     <label for="username" style="font-size: 16px;">Email Address</label>
                                 </div>
                                 <div class="input-field col s12">
