@@ -85,18 +85,18 @@ if (isset($_POST['signin'])) {
                     <div class="col s12 m8 l6 offset-l3 offset-m2" style="opacity: 0.5;">
                         <div class="card white darken-2" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                             <div class="card-content" style="opacity:1">
-                                <span class="card-title" style="opacity:1;  color: #3f51b5;font-weight: bold;font-size: 16px">Admin Sign In</span>
+                                <span class="card-title" style="opacity:1;  color: rgb(18, 18, 19);font-weight: bold;font-size: 16px">Admin Sign In</span>
                                 <div class="row" style="color: #000000; font-weight: bold;">
                                     <form class="col s12" name="signin" method="post">
                                         <div class="input-field col s12">
                                             <input id="username" type="text" name="username" class="validate"
                                                 autocomplete="off" required style="font-size: 18px; font-weight: bold; color: #000;">
-                                            <label for="email" style="font-size: 18px; font-weight: bold; color: #3f51b5;">Username</label>
+                                            <label for="email" style="font-size: 18px; font-weight: normal; color:rgb(18, 18, 19);">Username</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="password" type="password" class="validate" name="password"
                                                 autocomplete="off" required style="font-size: 18px; font-weight: bold; color: #000;">
-                                            <label for="password" style="font-size: 18px; font-weight: bold; color: #3f51b5;">Password</label>
+                                            <label for="password" style="font-size: 18px; font-weight: normal; color:rgb(18, 18, 19);">Password</label>
                                         </div>
                                         <div class="col s12 right-align m-t-sm">
                                             <input type="submit" name="signin" value="Sign in"
