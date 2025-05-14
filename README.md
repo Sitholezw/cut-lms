@@ -2,7 +2,7 @@ CHINHOYI UNIVERSITY-LEAVE MANAGMENT SYSYTEM (cut-lms)
 
 Description
 
-Cut LMS is a learning management system designed to facilitate online education.
+Cut LMS is a leave management system designed to facilitate online education.
 Installation Instructions
 
     Install XAMPP
