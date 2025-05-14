@@ -10,30 +10,30 @@ if (isset($_POST['signin'])) {
         die('CSRF token validation failed');
     }
     $uname = $_POST['username'];
-    $password = md5($_POST['password']);
-    $sql = "SELECT EmailId,Password,Status,id FROM tblemployees WHERE EmailId=:uname and Password=:password";
+    $password = $_POST['password'];
+    $sql = "SELECT EmailId,Password,Status,id FROM tblemployees WHERE EmailId=:uname";
     $query = $dbh->prepare($sql);
     $query->bindParam(':uname', $uname, PDO::PARAM_STR);
-    $query->bindParam(':password', $password, PDO::PARAM_STR);
     $query->execute();
     $results = $query->fetchAll(PDO::FETCH_OBJ);
     if ($query->rowCount() > 0) {
         foreach ($results as $result) {
             $status = $result->Status;
             $_SESSION['eid'] = $result->id;
-        }
-        if ($status == 0) {
-            $msg = "Your account is Inactive. Please contact admin";
-        } else {
-            $_SESSION['emplogin'] = $_POST['username'];
-            echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
+            if (password_verify($password, $result->Password)) {
+                if ($status == 0) {
+                    $msg = "Your account is Inactive. Please contact admin";
+                } else {
+                    $_SESSION['emplogin'] = $_POST['username'];
+                    echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
+                }
+            } else {
+                echo "<script>alert('Invalid Details');</script>";
+            }
         }
     } else {
-
         echo "<script>alert('Invalid Details');</script>";
-
     }
-
 }
 
 ?><!DOCTYPE html>
@@ -98,44 +98,42 @@ if (isset($_POST['signin'])) {
             </nav>
         </header>
 
-        <main class="mn-inner">
-            <div class="row">
-                <div class="col s12">
-                    <div class="col s12 m6 l6 offset-l2 offset-m3">
-                        <div class="card white darken-1" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-                            <div class="card-content" style="padding: 30px;">
-                                <div style="text-align: center; margin-bottom: 20px;">
-                                    <img src="assets/images/favicon.png" alt="Logo" width="100px" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <main class="mn-inner" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+            <div class="row" style="width: 100%;">
+                <div class="col s12 m6 l4 offset-l4">
+                    <div class="card white darken-1" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+                        <div class="card-content" style="padding: 30px;">
+                            <div style="text-align: center; margin-bottom: 20px;">
+                                <img src="assets/images/favicon.png" alt="Logo" width="100px" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                            </div>
+                            <span class="card-title" style="font-size: 24px; font-weight: bold; color: #3f51b5; text-align: center; display: block; margin-bottom: 20px;">
+                                Staff Login
+                            </span>
+                            <?php if ($msg) { ?>
+                                <div class="card-panel red lighten-4 red-text text-darken-4" style="border-radius: 8px; padding: 10px;">
+                                    <strong>Error:</strong> <?php echo htmlentities($msg); ?>
                                 </div>
-                                <span class="card-title" style="font-size: 24px; font-weight: bold; color: #3f51b5; text-align: center; display: block; margin-bottom: 20px;">
-                                    Staff Login
-                                </span>
-                                <?php if ($msg) { ?>
-                                    <div class="card-panel red lighten-4 red-text text-darken-4" style="border-radius: 8px; padding: 10px;">
-                                        <strong>Error:</strong> <?php echo htmlentities($msg); ?>
-                                    </div>
-                                <?php } ?>
-                                <form class="col s12" name="signin" method="post" style="margin-top: 20px;">
-                                    <div class="input-field col s12">
-                                        <input id="username" type="text" name="username" class="validate" autocomplete="off" required style="font-size: 16px;">
-                                        <label for="username" style="font-size: 16px;">Email Address</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input id="password" type="password" class="validate" name="password" autocomplete="off" required style="font-size: 16px;">
-                                        <label for="password" style="font-size: 16px;">Password</label>
-                                    </div>
-                                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-                                    <div class="col s12" style="margin-top: 20px;">
-                                        <button type="submit" name="signin" class="waves-effect waves-light btn indigo" style="width: 100%; font-size: 18px; font-weight: bold; background-color: #3f51b5;">
-                                            Sign In
-                                        </button>
-                                    </div>
-                                </form>
-                                <div class="row" style="margin-top: 20px; text-align: center;">
-                                    <a href="forgot-password.php" style="text-decoration: underline; color: #3f51b5; font-weight: bold; font-size: 16px;">
-                                        Forgot Password?
-                                    </a>
+                            <?php } ?>
+                            <form class="col s12" name="signin" method="post" style="margin-top: 20px;">
+                                <div class="input-field col s12">
+                                    <input id="username" type="text" name="username" class="validate" autocomplete="off" required style="font-size: 16px;">
+                                    <label for="username" style="font-size: 16px;">Email Address</label>
                                 </div>
+                                <div class="input-field col s12">
+                                    <input id="password" type="password" class="validate" name="password" autocomplete="off" required style="font-size: 16px;">
+                                    <label for="password" style="font-size: 16px;">Password</label>
+                                </div>
+                                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                                <div class="col s12" style="margin-top: 20px;">
+                                    <button type="submit" name="signin" class="waves-effect waves-light btn indigo" style="width: 100%; font-size: 18px; font-weight: bold; background-color: #3f51b5;">
+                                        Sign In
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="row" style="margin-top: 20px; text-align: center;">
+                                <a href="forgot-password.php" style="text-decoration: underline; color: #3f51b5; font-weight: bold; font-size: 16px;">
+                                    Forgot Password?
+                                </a>
                             </div>
                         </div>
                     </div>
