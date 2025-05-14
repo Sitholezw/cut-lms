@@ -121,7 +121,7 @@ if (isset($_POST['signin'])) {
     <script src="../assets/js/alpha.min.js"></script>
 
     <!-- Footer -->
-    <footer class="page-footer" style="position: fixed; bottom: 0; width: 100%; z-index: 1000; background-color: #3f51b5; color: white;">
+    <footer class="page-footer" style="position: fixed; margin-bottom: 10px; width: 100%; z-index: 1000; background-color: #3f51b5; color: white;">
         <div class="footer-copyright"  style="background-color: #3f51b5;">
             <div class="container">
                 © 2025 CUT-LMS. All rights reserved.
