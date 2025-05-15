@@ -94,12 +94,14 @@ $msg="Your Password succesfully changed";
             <div class="row">
                 <div class="col s12">
                     <div class="col s12 m6 l6 offset-l2 offset-m3">
-                        <div style="text-align:center"><img src="assets/images/favicon.png" alt="Logo" width="150px"></div>
-                        <div class="card white darken-10">
-                            <div class="card-content" style="background-color: rgba(255, 255, 255, 0.6); margin-bottom: 100px;">
-                                <span class="card-title" style="font-size:20px;">Reset your password</span>
+                        <div style="text-align:center; margin-bottom: 20px;">
+                            <img src="assets/images/favicon.png" alt="Logo" width="150px" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                        </div>
+                        <div class="card white darken-1" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 12px; margin: 0 auto;">
+                            <div class="card-content" style="padding: 30px; background-color: rgba(255, 255, 255, 0.9); border-radius: 12px;">
+                                <span class="card-title" style="font-size: 20px; font-weight: bold; color: #3f51b5; text-align: center;">Reset Your Password</span>
                                 <?php if ($msg) { ?>
-                                    <div class="succWrap"><strong>Success </strong>: <?php echo htmlentities($msg); ?></div>
+                                    <div class="succWrap"><strong>Success:</strong> <?php echo htmlentities($msg); ?></div>
                                 <?php } ?>
                                 <div class="row">
                                     <form class="col s12" name="signin" method="post">
@@ -112,30 +114,12 @@ $msg="Your Password succesfully changed";
                                             <label for="emailid">Email Address</label>
                                         </div>
                                         <div class="col s12 m-t-sm">
-                                            <input type="submit" name="submit" value="Reset" class="waves-effect waves-light btn blue m-b-xs" style="width: 100%;">
+                                            <input type="submit" name="submit" value="Reset" class="waves-effect waves-light btn blue m-b-xs" style="width: 100%; font-size: 16px; font-weight: bold;">
                                         </div>
                                     </form>
                                 </div>
-
-                                <!-- Moved Side Panel Contents -->
-                                <div class="row" style="margin-top: 20px;">
-                                    <ul class="sidebar-menu">
-                                        <li class="no-padding">
-                                            <a class="waves-effect waves-light" href="index.php" style="text-decoration: underline; color: #3f51b5; font-weight: bold;">
-                                                <i class="material-icons" style="vertical-align: middle;">home</i> Home
-                                            </a>
-                                        </li>
-                                        <li class="no-padding">
-                                            <a class="waves-effect waves-light" href="forgot-password.php" style="text-decoration: underline; color: #3f51b5; font-weight: bold;">
-                                                <i class="material-icons" style="vertical-align: middle;">lock</i> Forgot Password
-                                            </a>
-                                        </li>
-                                        <li class="no-padding">
-                                            <a class="waves-effect waves-light" href="admin/" style="text-decoration: underline; color: #3f51b5; font-weight: bold;">
-                                                <i class="material-icons" style="vertical-align: middle;">admin_panel_settings</i> Admin Login
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div class="row" style="margin-top: 20px; text-align: center;">
+                                    <a href="index.php" style="text-decoration: underline; color: #3f51b5; font-weight: bold;">Back to Login</a>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +130,7 @@ $msg="Your Password succesfully changed";
     </div>
 
     <!-- Footer -->
-    <footer class="page-footer" style="background-color: #3f51b5; color: white; margin-top: auto;">
+    <footer class="page-footer" style="background-color: #3f51b5; color: white; margin-top: auto; position:relative;">
         <div class="footer-copyright">
             <div class="container">
                 © 2025 CUT-LMS. All rights reserved.
