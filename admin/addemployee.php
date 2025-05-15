@@ -13,7 +13,7 @@ $empid=$_POST['empcode'];
 $fname=$_POST['firstName'];
 $lname=$_POST['lastName'];   
 $email=$_POST['email']; 
-$password=md5($_POST['password']); 
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $gender=$_POST['gender']; 
 $dob=$_POST['dob']; 
 $department=$_POST['department']; 
@@ -291,4 +291,4 @@ foreach($results as $result)
         
     </body>
 </html>
-<?php } ?> 
+<?php } ?>
