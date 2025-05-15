@@ -1,26 +1,46 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 include('includes/config.php');
 if (isset($_POST['signin'])) {
-    $uname = $_POST['username'];
-    $password = md5($_POST['password']);
-    $sql = "SELECT UserName,Password FROM admin WHERE UserName=:uname and Password=:password";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':uname', $uname, PDO::PARAM_STR);
-    $query->bindParam(':password', $password, PDO::PARAM_STR);
-    $query->execute();
-    $results = $query->fetchAll(PDO::FETCH_OBJ);
-    if ($query->rowCount() > 0) {
-        $_SESSION['alogin'] = $_POST['username'];
-        echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
-    } else {
+    echo "Form submitted!"; // Debug message
+    // Sanitize input
+    $uname = htmlspecialchars(strip_tags(trim($_POST['username'])), ENT_QUOTES, 'UTF-8');
+    $password = htmlspecialchars(strip_tags(trim($_POST['password'])), ENT_QUOTES, 'UTF-8');
 
-        echo "<script>alert('Invalid Details');</script>";
-
+    // Validate username
+    if (empty($uname)) {
+        echo "<script>alert('Username is required.');</script>";
     }
+    // Validate password
+    elseif (empty($password)) {
+        echo "<script>alert('Password is required.');</script>";
+    }
+    // Validate password length
+    elseif (strlen($password) < 4) {
+        echo "<script>alert('Password must be at least 4 characters long.');</script>";
+    } else {
+        // Proceed with database query
+        $password = md5($password); // Hash the password
+        $sql = "SELECT UserName,Password FROM admin WHERE UserName=:uname and Password=:password";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':uname', $uname, PDO::PARAM_STR);
+        $query->bindParam(':password', $password, PDO::PARAM_STR);
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_OBJ);
 
+        if ($query->rowCount() > 0) {
+            $_SESSION['alogin'] = $uname;
+            echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
+        } else {
+            echo "<script>alert('Invalid username or password.');</script>";
+        }
+    }
 }
-
+if (!$dbh) {
+    die('Database connection failed.');
+}
 ?>
 
 <!DOCTYPE html>
@@ -63,8 +83,8 @@ if (isset($_POST['signin'])) {
             width: 100%;
             height: 100%;
             background: #FFFFFF;
-            opacity: 0.5;
-            z-index: -1;
+            opacity: 0.5; /* Ensure this is not set to 1, which could hide the content */
+            z-index: -1;  /* Ensure this is not interfering with the main content */
         }
     </style>
     
@@ -87,11 +107,11 @@ if (isset($_POST['signin'])) {
                             <div class="card-content" style="opacity:1">
                                 <span class="card-title" style="opacity:1;  color: rgb(18, 18, 19);font-weight: bold;font-size: 16px">Admin Sign In</span>
                                 <div class="row" style="color: #000000; font-weight: bold;">
-                                    <form class="col s12" name="signin" method="post">
+                                    <form class="col s12" name="signin" method="post" onsubmit="return validateForm();">
                                         <div class="input-field col s12">
                                             <input id="username" type="text" name="username" class="validate"
                                                 autocomplete="off" required style="font-size: 18px; font-weight: bold; color: #000;">
-                                            <label for="email" style="font-size: 18px; font-weight: normal; color:rgb(18, 18, 19);">Username</label>
+                                            <label for="username" style="font-size: 18px; font-weight: normal; color:rgb(18, 18, 19);">Username</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="password" type="password" class="validate" name="password"
@@ -119,6 +139,32 @@ if (isset($_POST['signin'])) {
     <script src="../assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
     <script src="../assets/plugins/jquery-blockui/jquery.blockui.js"></script>
     <script src="../assets/js/alpha.min.js"></script>
+    <script>
+    function validateForm() {
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        // Check if username is empty
+        if (username === '') {
+            alert('Username is required.');
+            return false;
+        }
+
+        // Check if password is empty
+        if (password === '') {
+            alert('Password is required.');
+            return false;
+        }
+
+        // Check if password length is at least 6 characters
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters long.');
+            return false;
+        }
+
+        return true;
+    }
+</script>
 
     <!-- Footer -->
     <footer class="page-footer" style="position: fixed; margin-bottom: 10px; width: 100%; z-index: 1000; background-color: #3f51b5; color: white;">
@@ -129,10 +175,6 @@ if (isset($_POST['signin'])) {
                     <a href="https://facebook.com" target="_blank" style="color: white;">Facebook</a> | 
                     <a href="https://twitter.com" target="_blank" style="color: white;">Twitter</a> | 
                     <a href="https://instagram.com" target="_blank" style="color: white;">Instagram</a>
-                </span>
-            </div>
-        </div>
-    </footer>
                 </span>
             </div>
         </div>
