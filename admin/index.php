@@ -157,8 +157,8 @@ if (!$dbh) {
         }
 
         // Check if password length is at least 6 characters
-        if (password.length < 6) {
-            alert('Password must be at least 6 characters long.');
+        if (password.length < 4) {
+            alert('Password must be at least 4 characters long.');
             return false;
         }
 
