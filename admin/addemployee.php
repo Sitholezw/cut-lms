@@ -139,7 +139,27 @@ error:function (){}
 }
 </script>
 
+<script>
+function validateForm() {
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
 
+    // Validate email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address.');
+        return false;
+    }
+
+    // Validate phone number
+    if (phone.length !== 10 || isNaN(phone)) {
+        alert('Please enter a valid 10-digit mobile number.');
+        return false;
+    }
+
+    return true;
+}
+</script>
 
     </head>
     <body>
