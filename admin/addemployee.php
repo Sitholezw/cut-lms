@@ -164,6 +164,15 @@ function validateForm() {
 }
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        flatpickr("#birthdate", {
+            dateFormat: "Y-m-d", // Format: YYYY-MM-DD
+            maxDate: "today",   // Prevent selecting future dates
+        });
+    });
+</script>
+
     </head>
     <body>
   <?php include('includes/header.php');?>
