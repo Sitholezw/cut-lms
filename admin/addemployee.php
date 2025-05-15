@@ -78,6 +78,7 @@ $error="Something went wrong. Please try again";
         <link href="../assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet"> 
         <link href="../assets/css/alpha.min.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/css/custom.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <style>
         .errorWrap {
     padding: 10px;
@@ -239,7 +240,7 @@ function validateForm() {
 
 <div class="input-field col m6 s12">
 <label for="birthdate">Birthdate</label>
-<input id="birthdate" name="dob" type="date" autocomplete="off" required>
+<input id="birthdate" name="dob" type="text" autocomplete="off" required>
 </div>
 
                                                     
@@ -314,6 +315,7 @@ foreach($results as $result)
         <script src="../assets/plugins/jquery-blockui/jquery.blockui.js"></script>
         <script src="../assets/js/alpha.min.js"></script>
         <script src="../assets/js/pages/form_elements.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         
     </body>
 </html>
