@@ -330,8 +330,20 @@ foreach($results as $result)
                 const birthdate = new Date(this.value);
                 const today = new Date();
 
+                // Check if the birthdate is in the future
                 if (birthdate > today) {
                     alert('Birthdate cannot be in the future.');
+                    this.value = '';
+                    return;
+                }
+
+                // Check if the applicant is at least 18 years old
+                const age = today.getFullYear() - birthdate.getFullYear();
+                const monthDiff = today.getMonth() - birthdate.getMonth();
+                const dayDiff = today.getDate() - birthdate.getDate();
+
+                if (age < 18 || (age === 18 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)))) {
+                    alert('Applicants must be at least 18 years old.');
                     this.value = '';
                 }
             });
