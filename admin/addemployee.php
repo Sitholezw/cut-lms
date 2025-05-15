@@ -325,7 +325,17 @@ foreach($results as $result)
         <script src="../assets/js/alpha.min.js"></script>
         <script src="../assets/js/pages/form_elements.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        
+        <script>
+            document.getElementById('birthdate').addEventListener('change', function () {
+                const birthdate = new Date(this.value);
+                const today = new Date();
+
+                if (birthdate > today) {
+                    alert('Birthdate cannot be in the future.');
+                    this.value = '';
+                }
+            });
+        </script>
     </body>
 </html>
 <?php } ?>
