@@ -282,13 +282,41 @@ foreach($results as $result)
 </div>
 
 <div class="input-field col m6 s12">
-<label for="city">City/Town</label>
-<input id="city" name="city" type="text" autocomplete="off" required>
- </div>
+    <label for="city">City/Town</label>
+    <select id="city" name="city" class="browser-default" required>
+        <option value="" disabled selected>Choose your city/town</option>
+        <option value="Harare">Harare</option>
+        <option value="Bulawayo">Bulawayo</option>
+        <option value="Chitungwiza">Chitungwiza</option>
+        <option value="Mutare">Mutare</option>
+        <option value="Gweru">Gweru</option>
+        <option value="Kwekwe">Kwekwe</option>
+        <option value="Kadoma">Kadoma</option>
+        <option value="Masvingo">Masvingo</option>
+        <option value="Marondera">Marondera</option>
+        <option value="Bindura">Bindura</option>
+        <option value="Zvishavane">Zvishavane</option>
+        <option value="Victoria Falls">Victoria Falls</option>
+        <option value="Hwange">Hwange</option>
+        <option value="Rusape">Rusape</option>
+        <option value="Chinhoyi">Chinhoyi</option>
+        <option value="Norton">Norton</option>
+        <option value="Beitbridge">Beitbridge</option>
+        <option value="Redcliff">Redcliff</option>
+        <option value="Kariba">Kariba</option>
+        <option value="Karoi">Karoi</option>
+        <option value="Chipinge">Chipinge</option>
+        <option value="Shurugwi">Shurugwi</option>
+        <option value="Chegutu">Chegutu</option>
+        <option value="Gokwe">Gokwe</option>
+    </select>
+</div>
    
 <div class="input-field col m6 s12">
-<label for="country">Country</label>
-<input id="country" name="country" type="text" autocomplete="off" required>
+    <label for="country">Country</label>
+    <select id="country" name="country" class="browser-default" required>
+        <option value="Zimbabwe" selected>Zimbabwe</option>
+    </select>
 </div>
 
                                                             
