@@ -38,7 +38,9 @@ $query->bindParam(':city',$city,PDO::PARAM_STR);
 $query->bindParam(':country',$country,PDO::PARAM_STR);
 $query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
-$query->execute();
+if (!$query->execute()) {
+    $error = "Failed to add employee. Please try again.";
+}
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
