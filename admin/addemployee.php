@@ -9,10 +9,10 @@ header('location:index.php');
 else{
 if(isset($_POST['add']))
 {
-$empid=$_POST['empcode'];
-$fname=$_POST['firstName'];
-$lname=$_POST['lastName'];   
-$email=$_POST['email']; 
+$empid = htmlspecialchars(strip_tags(trim($_POST['empcode'])), ENT_QUOTES, 'UTF-8');
+$fname = htmlspecialchars(strip_tags(trim($_POST['firstName'])), ENT_QUOTES, 'UTF-8');
+$lname = htmlspecialchars(strip_tags(trim($_POST['lastName'])), ENT_QUOTES, 'UTF-8');
+$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $gender=$_POST['gender']; 
 $dob=$_POST['dob']; 
