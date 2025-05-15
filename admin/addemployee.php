@@ -206,10 +206,9 @@ function validateForm() {
 <?php }?>
 
 
- <div class="input-field col  s12">
-<label for="empcode" aria-label="Employee Code">Employee Code (Must be unique)</label>
-<input  name="empcode" id="empcode" onBlur="checkAvailabilityEmpid()" type="text" autocomplete="off" required>
-<span id="empid-availability" style="font-size:12px;"></span> 
+ <div class="input-field col m6 s12">
+    <label for="empcode" aria-label="Employee Code">Employee Code (Generated Automatically)</label>
+    <input name="empcode" id="empcode" type="text" autocomplete="off" readonly required>
 </div>
 
 
@@ -260,7 +259,7 @@ function validateForm() {
                                                     
 
 <div class="input-field col m6 s12">
-<select  name="department" autocomplete="off">
+<select  name="department" id="department" autocomplete="off" onchange="generateEmpCode();">
 <option value="">Department...</option>
 <?php $sql = "SELECT DepartmentName from tbldepartments";
 $query = $dbh -> prepare($sql);
