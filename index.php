@@ -9,30 +9,42 @@ if (isset($_POST['signin'])) {
     if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         die('CSRF token validation failed');
     }
-    $uname = $_POST['username'];
+
+    // Sanitize input
+    $uname = filter_var($_POST['username'], FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
-    $sql = "SELECT EmailId,Password,Status,id FROM tblemployees WHERE EmailId=:uname";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':uname', $uname, PDO::PARAM_STR);
-    $query->execute();
-    $results = $query->fetchAll(PDO::FETCH_OBJ);
-    if ($query->rowCount() > 0) {
-        foreach ($results as $result) {
-            $status = $result->Status;
-            $_SESSION['eid'] = $result->id;
-            if (password_verify($password, $result->Password)) {
-                if ($status == 0) {
-                    $msg = "Your account is Inactive. Please contact admin";
-                } else {
-                    $_SESSION['emplogin'] = $_POST['username'];
-                    echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
-                }
-            } else {
-                echo "<script>alert('Invalid Details');</script>";
-            }
-        }
+
+    // Validate email format
+    if (!filter_var($uname, FILTER_VALIDATE_EMAIL)) {
+        $loginError = "Invalid email format.";
+    } elseif (strlen($password) < 6) {
+        $loginError = "Password must be at least 6 characters long.";
     } else {
-        echo "<script>alert('Invalid Details');</script>";
+        // Proceed with database query
+        $sql = "SELECT EmailId,Password,Status,id FROM tblemployees WHERE EmailId=:uname";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':uname', $uname, PDO::PARAM_STR);
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_OBJ);
+
+        if ($query->rowCount() > 0) {
+            foreach ($results as $result) {
+                $status = $result->Status;
+                $_SESSION['eid'] = $result->id;
+                if (password_verify($password, $result->Password)) {
+                    if ($status == 0) {
+                        $loginError = "Your account is inactive. Please contact admin.";
+                    } else {
+                        $_SESSION['emplogin'] = $_POST['username'];
+                        echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
+                    }
+                } else {
+                    $loginError = "Invalid email or password.";
+                }
+            }
+        } else {
+            $loginError = "Invalid email or password.";
+        }
     }
 }
 
@@ -120,13 +132,13 @@ if (isset($_POST['signin'])) {
                                     <strong>Error:</strong> <?php echo htmlentities($msg); ?>
                                 </div>
                             <?php } ?>
-                            <form class="col s12" name="signin" method="post" style="margin-top: 20px;">
+                            <form class="col s12" name="signin" method="post" onsubmit="return validateForm();" style="margin-top: 20px;">
                                 <div class="input-field col s12">
                                     <input id="username" type="email" name="username" class="validate" autocomplete="off" required aria-label="Email Address">
                                     <label for="username" style="font-size: 16px;">Email Address</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="password" type="password" class="validate" name="password" autocomplete="off" required style="font-size: 16px;">
+                                    <input id="password" type="password" class="validate" name="password" autocomplete="off" required minlength="6" style="font-size: 16px;">
                                     <label for="password" style="font-size: 16px;">Password</label>
                                 </div>
                                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
@@ -187,6 +199,16 @@ if (isset($_POST['signin'])) {
             button.disabled = true;
             button.innerHTML = 'Signing In...';
         });
+
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if (username == "" || password == "") {
+                alert("Username and password must be filled out");
+                return false;
+            }
+            return true;
+        }
     </script>
 </body>
 
