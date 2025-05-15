@@ -49,6 +49,7 @@ if (isset($_POST['signin'])) {
     <meta name="description" content="Responsive Admin Dashboard Template" />
     <meta name="keywords" content="admin,dashboard" />
     <meta name="author" content="Steelcoders" />
+    <meta name="robots" content="noindex, nofollow">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Styles -->
     <link type="text/css" rel="stylesheet" href="assets/plugins/materialize/css/materialize.min.css" />
@@ -103,10 +104,10 @@ if (isset($_POST['signin'])) {
             </nav>
         </header>
 
-        <main class="mn-inner" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-            <div class="row" style="width: 100%;">
+        <main class="mn-inner" style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 120px);">
+            <div class="row" style="width: 100%; margin: 0;">
                 <div class="col s12 m6 l4 offset-l4">
-                    <div class="card white darken-1" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+                    <div class="card white darken-1" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; margin: 0;">
                         <div class="card-content" style="padding: 30px;">
                             <div style="text-align: center; margin-bottom: 20px;">
                                 <img src="assets/images/favicon.png" alt="Logo" width="100px" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
@@ -146,6 +147,34 @@ if (isset($_POST['signin'])) {
             </div>
         </main>
     </div>
+    <!--
+    <footer class="page-footer" style="background-color: #3f51b5; color: white; padding: 20px 0; margin-top: 0; z-index: 1000;">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6">
+                    <h6>Contact Us</h6>
+                    <p>
+                        Chinhoyi University of Technology<br>
+                        Private Bag 7724, Chinhoyi, Zimbabwe<br>
+                        Tel: +263 784840335<br>
+                        Email: <a href="mailto:techub@outlook.com" style="color: white;">techub@outlook.com</a>
+                    </p>
+                </div>
+                <div class="col s12 m6 right-align">
+                    <h6>Follow Us</h6>
+                    <a href="https://facebook.com" target="_blank" style="color: white; margin-right: 15px;">Facebook</a>
+                    <a href="https://twitter.com" target="_blank" style="color: white; margin-right: 15px;">Twitter</a>
+                    <a href="https://instagram.com" target="_blank" style="color: white;">Instagram</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p>© <?php echo date("Y"); ?> CUT LMS. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    -->
     <!-- Javascripts -->
     <script src="assets/plugins/jquery/jquery-2.2.0.min.js"></script>
     <script src="assets/plugins/materialize/js/materialize.min.js"></script>

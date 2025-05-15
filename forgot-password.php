@@ -83,40 +83,12 @@ $msg="Your Password succesfully changed";
         <header class="mn-header navbar-fixed">
             <nav class="#82b1ff blue accent-1">
                 <div class="nav-wrapper row">
-                    <section class="material-design-hamburger navigation-toggle">
-                        <a href="#" data-activates="slide-out" class="button-collapse show-on-large material-design-hamburger__icon">
-                            <span class="material-design-hamburger__layer"></span>
-                        </a>
-                    </section>
                     <div class="header-title col s3">
                         <span class="chapter-title">CUT | Leave Management System</span>
                     </div>
                 </div>
             </nav>
         </header>
-
-        <!-- Side Panel -->
-        <aside id="slide-out" class="side-nav fixed">
-            <div class="side-nav-wrapper">
-                <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-                    <li class="no-padding">
-                        <a class="waves-effect waves-light" href="index.php">
-                            <i class="material-icons">home</i>Home
-                        </a>
-                    </li>
-                    <li class="no-padding">
-                        <a class="waves-effect waves-light" href="forgot-password.php">
-                            <i class="material-icons">lock</i>Forgot Password
-                        </a>
-                    </li>
-                    <li class="no-padding">
-                        <a class="waves-effect waves-light" href="admin/">
-                            <i class="material-icons">admin_panel_settings</i>Admin Login
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
 
         <main class="mn-inner">
             <div class="row">
@@ -126,7 +98,9 @@ $msg="Your Password succesfully changed";
                         <div class="card white darken-10">
                             <div class="card-content" style="background-color: rgba(255, 255, 255, 0.6); margin-bottom: 100px;">
                                 <span class="card-title" style="font-size:20px;">Reset your password</span>
-                                <?php if($msg){?><div class="succWrap"><strong>Success </strong> : <?php echo htmlentities($msg); ?> </div><?php }?>
+                                <?php if ($msg) { ?>
+                                    <div class="succWrap"><strong>Success </strong>: <?php echo htmlentities($msg); ?></div>
+                                <?php } ?>
                                 <div class="row">
                                     <form class="col s12" name="signin" method="post">
                                         <div class="input-field col s12">
@@ -142,57 +116,29 @@ $msg="Your Password succesfully changed";
                                         </div>
                                     </form>
                                 </div>
-                              </div>
-<?php if(isset($_POST['submit']))
-{
-$empid=$_POST['empid'];
-$email=$_POST['emailid'];
-$sql ="SELECT id FROM tblemployees WHERE EmailId=:email and EmpId=:empid";
-$query= $dbh -> prepare($sql);
-$query-> bindParam(':email', $email, PDO::PARAM_STR);
-$query-> bindParam(':empid', $empid, PDO::PARAM_STR);
-$query-> execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-if($query->rowCount() > 0)
-{
-foreach ($results as $result) {
-    $_SESSION['empid']=$result->id;
-  } 
-    ?>
 
- <div class="row">
-          <span class="card-title" style="font-size:20px;">change your password </span>                                     
-    <form class="col s12" name="udatepwd" method="post">
-  <div class="input-field col s12">
- <input id="password" type="password" name="newpassword" class="validate" autocomplete="off" required>
-                                                <label for="password">New Password</label>
-                                            </div>
-
-<div class="input-field col s12">
-<input id="password" type="password" name="confirmpassword" class="validate" autocomplete="off" required>
- <label for="password">Confirm Password</label>
-</div>
-
-
-<div class="input-field col s12">
-<button type="submit" name="change" class="waves-effect waves-light btn indigo m-b-xs" onclick="return valid();">Change</button>
-
-</div>
-</div>
-</form>
-<?php } else{ ?>
-<div class="errorWrap" style="margin-left: 2%; font-size:22px;">
- <strong>ERROR</strong> : <?php echo htmlentities("Invalid details");
-}?></div>
-<?php } ?>
-
-
-
-
-
-
-                              </div>
-                          </div>
+                                <!-- Moved Side Panel Contents -->
+                                <div class="row" style="margin-top: 20px;">
+                                    <ul class="sidebar-menu">
+                                        <li class="no-padding">
+                                            <a class="waves-effect waves-light" href="index.php" style="text-decoration: underline; color: #3f51b5; font-weight: bold;">
+                                                <i class="material-icons" style="vertical-align: middle;">home</i> Home
+                                            </a>
+                                        </li>
+                                        <li class="no-padding">
+                                            <a class="waves-effect waves-light" href="forgot-password.php" style="text-decoration: underline; color: #3f51b5; font-weight: bold;">
+                                                <i class="material-icons" style="vertical-align: middle;">lock</i> Forgot Password
+                                            </a>
+                                        </li>
+                                        <li class="no-padding">
+                                            <a class="waves-effect waves-light" href="admin/" style="text-decoration: underline; color: #3f51b5; font-weight: bold;">
+                                                <i class="material-icons" style="vertical-align: middle;">admin_panel_settings</i> Admin Login
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
