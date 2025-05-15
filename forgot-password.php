@@ -16,6 +16,35 @@ $chngpwd1->execute();
 $msg="Your Password succesfully changed";
 }
 
+if (isset($_POST['submit'])) {
+    // Sanitize input
+    $empid = htmlspecialchars(strip_tags(trim($_POST['empid'])), ENT_QUOTES, 'UTF-8');
+    $email = filter_var($_POST['emailid'], FILTER_SANITIZE_EMAIL);
+
+    // Validate Employee ID length
+    if (strlen($empid) < 4) {
+        $error = "Employee ID must be at least 4 characters long.";
+    }
+    // Validate email format
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Invalid email format.";
+    } else {
+        // Proceed with database query
+        $sql = "SELECT id FROM tblemployees WHERE EmpId=:empid AND EmailId=:email";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':empid', $empid, PDO::PARAM_STR);
+        $query->bindParam(':email', $email, PDO::PARAM_STR);
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_OBJ);
+
+        if ($query->rowCount() > 0) {
+            $_SESSION['empid'] = $empid;
+            $msg = "Password reset link has been sent to your email.";
+        } else {
+            $error = "Invalid Employee ID or Email.";
+        }
+    }
+}
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -94,30 +123,32 @@ $msg="Your Password succesfully changed";
             <div class="row">
                 <div class="col s12">
                     <div class="col s12 m6 l6 offset-l2 offset-m3">
-                        <div style="text-align:center; margin-bottom: 20px;">
-                            <img src="assets/images/favicon.png" alt="Logo" width="150px" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-                        </div>
                         <div class="card white darken-1" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 12px; margin: 0 auto;">
-                            <div class="card-content" style="padding: 30px; background-color: rgba(255, 255, 255, 0.9); border-radius: 12px;">
+                            <div class="card-content" style="padding: 30px; background-color: #fff; border-radius: 12px;">
+                                <!-- Logo inside card-content -->
+                                <div style="text-align: center; margin-bottom: 20px;">
+                                    <img src="assets/images/favicon.png" alt="Logo" width="100px" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                                </div>
                                 <span class="card-title" style="font-size: 20px; font-weight: bold; color: #3f51b5; text-align: center;">Reset Your Password</span>
                                 <?php if ($msg) { ?>
                                     <div class="succWrap"><strong>Success:</strong> <?php echo htmlentities($msg); ?></div>
                                 <?php } ?>
-                                <div class="row">
-                                    <form class="col s12" name="signin" method="post">
-                                        <div class="input-field col s12">
-                                            <input id="empid" type="text" name="empid" class="validate" autocomplete="off" required>
-                                            <label for="empid">Employee ID</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input id="emailid" type="email" class="validate" name="emailid" autocomplete="off" required>
-                                            <label for="emailid">Email Address</label>
-                                        </div>
-                                        <div class="col s12 m-t-sm">
-                                            <input type="submit" name="submit" value="Reset" class="waves-effect waves-light btn blue m-b-xs" style="width: 100%; font-size: 16px; font-weight: bold;">
-                                        </div>
-                                    </form>
-                                </div>
+                                <?php if (isset($error)) { ?>
+                                    <div class="errorWrap"><strong>Error:</strong> <?php echo htmlentities($error); ?></div>
+                                <?php } ?>
+                                <form class="col s12" name="resetPassword" method="post" onsubmit="return validateForm();">
+                                    <div class="input-field col s12">
+                                        <input id="empid" type="text" name="empid" class="validate" autocomplete="off" required minlength="4" aria-label="Employee ID">
+                                        <label for="empid">Employee ID</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input id="emailid" type="email" class="validate" name="emailid" autocomplete="off" required aria-label="Email Address">
+                                        <label for="emailid">Email Address</label>
+                                    </div>
+                                    <div class="col s12 m-t-sm">
+                                        <input type="submit" name="submit" value="Reset" class="waves-effect waves-light btn blue m-b-xs" style="width: 100%; font-size: 16px; font-weight: bold;">
+                                    </div>
+                                </form>
                                 <div class="row" style="margin-top: 20px; text-align: center;">
                                     <a href="index.php" style="text-decoration: underline; color: #3f51b5; font-weight: bold;">Back to Login</a>
                                 </div>
@@ -149,6 +180,27 @@ $msg="Your Password succesfully changed";
     <script src="assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
     <script src="assets/plugins/jquery-blockui/jquery.blockui.js"></script>
     <script src="assets/js/alpha.min.js"></script>
+    <script>
+    function validateForm() {
+        const empid = document.getElementById('empid').value;
+        const email = document.getElementById('emailid').value;
+
+        // Check if Employee ID is at least 4 characters
+        if (empid.length < 4) {
+            alert('Employee ID must be at least 4 characters long.');
+            return false;
+        }
+
+        // Check if email is valid
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert('Please enter a valid email address.');
+            return false;
+        }
+
+        return true;
+    }
+</script>
         
     </body>
 </html>
