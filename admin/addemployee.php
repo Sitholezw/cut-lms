@@ -208,83 +208,69 @@ function validateForm() {
 
 
  <div class="input-field col m6 s12">
-    <label for="empcode" aria-label="Employee Code">Employee Code (Generated Automatically)</label>
-    <input name="empcode" id="empcode" type="text" autocomplete="off" readonly required>
+    <input name="empcode" id="empcode" type="text" placeholder="Employee Code (Generated Automatically)" autocomplete="off" readonly required>
 </div>
 
 
 <div class="input-field col m6 s12">
-<label for="firstName">First name</label>
-<input id="firstName" name="firstName" type="text" required>
+    <input id="firstName" name="firstName" type="text" placeholder="First Name" required>
 </div>
 
 <div class="input-field col m6 s12">
-<label for="lastName">Last name</label>
-<input id="lastName" name="lastName" type="text" autocomplete="off" required>
+    <input id="lastName" name="lastName" type="text" placeholder="Last Name" autocomplete="off" required>
 </div>
 
 <div class="input-field col s12">
-<label for="email">Email</label>
-<input  name="email" type="email" id="email" onBlur="checkAvailabilityEmailid()" autocomplete="off" required>
-<span id="emailid-availability" style="font-size:12px;"></span> 
+    <input name="email" type="email" id="email" placeholder="Email" onBlur="checkAvailabilityEmailid()" autocomplete="off" required>
+    <span id="emailid-availability" style="font-size:12px;"></span>
 </div>
 
 <div class="input-field col s12">
-<label for="password">Password</label>
-<input id="password" name="password" type="password" autocomplete="off" required>
+    <input id="password" name="password" type="password" placeholder="Password" autocomplete="off" required>
 </div>
 
 <div class="input-field col s12">
-<label for="confirm">Confirm password</label>
-<input id="confirm" name="confirmpassword" type="password" autocomplete="off" required>
-</div>
-</div>
-</div>
-                                                    
-<div class="col m6">
-<div class="row">
-<div class="input-field col m6 s12">
-<select  name="gender" autocomplete="off">
-<option value="">Gender...</option>                                          
-<option value="Male">Male</option>
-<option value="Female">Female</option>
-<option value="Other">Other</option>
-</select>
+    <input id="confirm" name="confirmpassword" type="password" placeholder="Confirm Password" autocomplete="off" required>
 </div>
 
 <div class="input-field col m6 s12">
-<label for="birthdate">Birthdate</label>
-<input id="birthdate" name="dob" type="text" autocomplete="off" required>
-</div>
-
-                                                    
-
-<div class="input-field col m6 s12">
-<select  name="department" id="department" autocomplete="off" onchange="generateEmpCode();">
-<option value="">Department...</option>
-<?php $sql = "SELECT DepartmentName from tbldepartments";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{   ?>                                            
-<option value="<?php echo htmlentities($result->DepartmentName);?>"><?php echo htmlentities($result->DepartmentName);?></option>
-<?php }} ?>
-</select>
+    <select name="gender" autocomplete="off">
+        <option value="" disabled selected>Gender...</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
 </div>
 
 <div class="input-field col m6 s12">
-<label for="address">Address</label>
-<input id="address" name="address" type="text" autocomplete="off" required>
+    <input id="birthdate" name="dob" type="text" placeholder="Birthdate" autocomplete="off" required>
 </div>
 
 <div class="input-field col m6 s12">
-    <label for="city">City/Town</label>
+    <select name="department" id="department" autocomplete="off" onchange="generateEmpCode();">
+        <option value="" disabled selected>Department...</option>
+        <?php
+        $sql = "SELECT DepartmentName FROM tbldepartments";
+        $query = $dbh->prepare($sql);
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_OBJ);
+        if ($query->rowCount() > 0) {
+            foreach ($results as $result) { ?>
+                <option value="<?php echo htmlentities($result->DepartmentName); ?>">
+                    <?php echo htmlentities($result->DepartmentName); ?>
+                </option>
+        <?php }
+        } ?>
+    </select>
+</div>
+
+<div class="input-field col m6 s12">
+    <input id="address" name="address" type="text" placeholder="Address" autocomplete="off" required>
+</div>
+
+<div class="input-field col m6 s12">
     <select id="city" name="city" class="browser-default" required>
-        <option value="" disabled selected>Choose your city/town</option>
+        <option value="" disabled selected>City/Town</option>
         <option value="Harare">Harare</option>
         <option value="Bulawayo">Bulawayo</option>
         <option value="Chitungwiza">Chitungwiza</option>
@@ -311,18 +297,15 @@ foreach($results as $result)
         <option value="Gokwe">Gokwe</option>
     </select>
 </div>
-   
+
 <div class="input-field col m6 s12">
-    <label for="country">Country</label>
     <select id="country" name="country" class="browser-default" required>
-        <option value="Zimbabwe" selected>Zimbabwe</option>
+        <option value="Zimbabwe" selected>Country: Zimbabwe</option>
     </select>
 </div>
 
-                                                            
 <div class="input-field col s12">
-<label for="phone">Mobile number</label>
-<input id="phone" name="mobileno" type="tel" maxlength="10" autocomplete="off" required>
+    <input id="phone" name="mobileno" type="tel" maxlength="10" placeholder="Mobile Number" autocomplete="off" required>
  </div>
 
                                                         
