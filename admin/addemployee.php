@@ -184,8 +184,11 @@ function validateForm() {
                                                 <div class="row">
                                                     <div class="col m6">
                                                         <div class="row">
-     <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-                else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+     <?php if ($error) { ?>
+    <div class="errorWrap"><strong>ERROR:</strong> <?php echo htmlentities($error); ?></div>
+<?php } elseif ($msg) { ?>
+    <div class="succWrap"><strong>SUCCESS:</strong> <?php echo htmlentities($msg); ?></div>
+<?php }?>
 
 
  <div class="input-field col  s12">
