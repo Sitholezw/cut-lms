@@ -239,7 +239,7 @@ function validateForm() {
 
 <div class="input-field col m6 s12">
 <label for="birthdate">Birthdate</label>
-<input id="birthdate" name="dob" type="date" class="datepicker" autocomplete="off" >
+<input id="birthdate" name="dob" type="date" autocomplete="off" required>
 </div>
 
                                                     
