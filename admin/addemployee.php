@@ -352,6 +352,39 @@ foreach($results as $result)
                 }
             });
         </script>
+
+<script>
+    function generateEmpCode() {
+        const department = document.getElementById('department').value;
+        const empCodeField = document.getElementById('empcode');
+
+        if (department) {
+            // Map department names to their codes
+            const departmentCodes = {
+                "Information Technology": "ICT",
+                "Human Resources": "HR",
+                "Finance": "FIN",
+                "Marketing": "MKT",
+                "Operations": "OPS",
+                "Other": "OTH"
+            };
+
+            // Get the department code
+            const departmentCode = departmentCodes[department] || "GEN";
+
+            // Generate a unique number (e.g., based on timestamp)
+            const uniqueNumber = Math.floor(1000 + Math.random() * 9000);
+
+            // Combine the department code and unique number
+            const empCode = `${departmentCode}${uniqueNumber}`;
+
+            // Set the generated code in the Employee Code field
+            empCodeField.value = empCode;
+        } else {
+            empCodeField.value = ""; // Clear the field if no department is selected
+        }
+    }
+</script>
     </body>
 </html>
 <?php } ?>
