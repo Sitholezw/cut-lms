@@ -9,18 +9,19 @@ header('location:index.php');
 else{
 if(isset($_POST['add']))
 {
-$dob = $_POST['dob'];
+$empcode = $_POST['empcode'];
 
-// Check if the applicant is at least 18 years old
-$birthdate = new DateTime($dob);
-$today = new DateTime();
-$age = $today->diff($birthdate)->y;
+// Check if the employee code already exists
+$sql = "SELECT EmpId FROM tblemployees WHERE EmpId = :empcode";
+$query = $dbh->prepare($sql);
+$query->bindParam(':empcode', $empcode, PDO::PARAM_STR);
+$query->execute();
 
-if ($age < 18) {
-    $error = "Applicants must be at least 18 years old.";
+if ($query->rowCount() > 0) {
+    $error = "Employee Code already exists. Please try again.";
 } else {
-    // Proceed with the rest of the code
-    $empid = htmlspecialchars(strip_tags(trim($_POST['empcode'])), ENT_QUOTES, 'UTF-8');
+    // Proceed with inserting the employee record
+    $dob = $_POST['dob'];
     $fname = htmlspecialchars(strip_tags(trim($_POST['firstName'])), ENT_QUOTES, 'UTF-8');
     $lname = htmlspecialchars(strip_tags(trim($_POST['lastName'])), ENT_QUOTES, 'UTF-8');
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -34,9 +35,9 @@ if ($age < 18) {
     $status = 1;
 
     $sql = "INSERT INTO tblemployees(EmpId,FirstName,LastName,EmailId,Password,Gender,Dob,Department,Address,City,Country,Phonenumber,Status) 
-            VALUES(:empid,:fname,:lname,:email,:password,:gender,:dob,:department,:address,:city,:country,:mobileno,:status)";
+            VALUES(:empcode,:fname,:lname,:email,:password,:gender,:dob,:department,:address,:city,:country,:mobileno,:status)";
     $query = $dbh->prepare($sql);
-    $query->bindParam(':empid', $empid, PDO::PARAM_STR);
+    $query->bindParam(':empcode', $empcode, PDO::PARAM_STR);
     $query->bindParam(':fname', $fname, PDO::PARAM_STR);
     $query->bindParam(':lname', $lname, PDO::PARAM_STR);
     $query->bindParam(':email', $email, PDO::PARAM_STR);
