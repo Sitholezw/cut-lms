@@ -7,6 +7,13 @@ if(strlen($_SESSION['alogin'])==0)
 header('location:index.php');
 }
 else{
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 1800)) {
+    // Last activity was more than 30 minutes ago
+    session_unset();
+    session_destroy();
+    header('location:index.php');
+}
+$_SESSION['last_activity'] = time(); // Update last activity time
 ?>
 
 <!DOCTYPE html>
@@ -53,15 +60,28 @@ else{
                         <div class="card stats-card">
                             <div class="card-content">
                             
-                                <span class="card-title">Total Registered Employee</span>
+                                <span class="card-title" aria-label="Total Registered Employees">Total Registered Employees</span>
                                 <span class="stats-counter">
 <?php
-$sql = "SELECT id from tblemployees";
+function getCount($table, $condition = '') {
+    global $dbh;
+    $sql = "SELECT COUNT(*) as count FROM $table $condition";
+    $query = $dbh->prepare($sql);
+    $query->execute();
+    $result = $query->fetch(PDO::FETCH_OBJ);
+    return $result->count;
+}
+$empcount = getCount('tblemployees');
+$dptcount = getCount('tbldepartments');
+$sql = "SELECT id from tbldepartments";
 $query = $dbh -> prepare($sql);
-$query->execute();
+if (!$query->execute()) {
+    echo "<div class='error'>Failed to fetch data. Please try again later.</div>";
+}
 $results=$query->fetchAll(PDO::FETCH_OBJ);
-$empcount=$query->rowCount();
+$dptcount=$query->rowCount();
 ?>
+
 
                                     <span class="counter"><?php echo htmlentities($empcount);?></span></span>
                             </div>
