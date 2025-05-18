@@ -63,12 +63,19 @@ ob_end_flush();
 <!doctype html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <title>Staff Login | CUT LMS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <link href="assets/css/alpha.min.css" rel="stylesheet">
+
+   <!-- favicoins -->
+        <link href="assets\images\favicon.png" rel="icon">
+        <link href="assets\images\favicon.png" rel="apple-touch-icon">
+        
   <style>
     body { background: url('assets/images/background.jpg') center/cover no-repeat; }
     .card { margin-top: 5%; border-radius: 8px; }
@@ -80,6 +87,10 @@ ob_end_flush();
       <div class="col s12 m6 l4 offset-l4">
         <div class="card white">
           <div class="card-content">
+            <!-- Logo inside card-content -->
+            <div style="text-align: center; margin-bottom: 20px;">
+              <img src="assets/images/favicon.png" alt="Logo" width="100px" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+            </div>
             <h5 class="center-align">Staff Login</h5>
             <?php if ($loginError): ?>
               <div class="card-panel red lighten-4 red-text">
