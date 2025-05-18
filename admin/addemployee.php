@@ -106,7 +106,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
 </head>
 <body>
   <?php include('includes/header.php');?>
-  <?php include('includes/sidebar.php');?>
+
+  <div class="sidenav sidenav-fixed">
+    <?php include('includes/sidebar.php');?>
+  </div>
 
   <div class="mn-content fixed-sidebar">
     <main class="mn-inner">
@@ -205,6 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
         </div>
       </div>
     </main>
+  </div>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
