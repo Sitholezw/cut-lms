@@ -102,76 +102,84 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
           <?php endif; ?>
 
           <form method="post" onsubmit="return validateForm();">
-            <!-- Employee Code (readonly) -->
-            <div class="input-field">
-              <input name="empcode" id="empcode" type="text"
-                placeholder="Emp. Code (auto-gen)" readonly required>
+            <div class="row">
+              <div class="input-field col s12">
+                <input name="empcode" id="empcode" type="text" placeholder="Emp. Code (auto-gen)" readonly required>
+              </div>
             </div>
-            <!-- First & Last Name -->
-            <div class="input-field col m6 s12">
-              <input name="firstName" id="firstName" type="text" placeholder="First Name" required>
+            <div class="row">
+              <div class="input-field col m6 s12">
+                <input name="firstName" id="firstName" type="text" placeholder="First Name" required>
+              </div>
+              <div class="input-field col m6 s12">
+                <input name="lastName" id="lastName" type="text" placeholder="Last Name" required>
+              </div>
             </div>
-            <div class="input-field col m6 s12">
-              <input name="lastName" id="lastName" type="text" placeholder="Last Name" required>
+            <div class="row">
+              <div class="input-field col m6 s12">
+                <input id="start" name="dob" type="text" placeholder="Date of Birth" required>
+              </div>
+              <div class="input-field col m6 s12">
+                <select name="gender" id="gender" required>
+                  <option disabled selected>Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </div>
             </div>
-            <!-- DOB & Gender -->
-            <div class="input-field col m6 s12">
-              <input id="start" name="dob" type="text" placeholder="Date of Birth" required>
+            <div class="row">
+              <div class="input-field col m6 s12">
+                <input name="email" id="email" type="email" placeholder="Email" required>
+              </div>
+              <div class="input-field col m6 s12">
+                <input name="mobileno" id="mobileno" type="text" maxlength="10" placeholder="Phone" required>
+              </div>
             </div>
-            <div class="input-field col m6 s12">
-              <select name="gender" id="gender" required>
-                <option disabled selected>Gender</option>
-                <option>Male</option>
-                <option>Female</option>
-              </select>
+            <div class="row">
+              <div class="input-field col s12">
+                <input name="address" id="address" type="text" placeholder="Address" required>
+              </div>
             </div>
-            <!-- Contact -->
-            <div class="input-field col m6 s12">
-              <input name="email" id="email" type="email" placeholder="Email" required>
+            <div class="row">
+              <div class="input-field col m6 s12">
+                <select name="city" id="city" required>
+                  <option disabled selected>City/Town</option>
+                  <option>Harare</option>
+                  <option>Bulawayo</option>
+                </select>
+              </div>
+              <div class="input-field col m6 s12">
+                <select name="country" id="country" required>
+                  <option value="Zimbabwe" selected>Zimbabwe</option>
+                </select>
+              </div>
             </div>
-            <div class="input-field col m6 s12">
-              <input name="mobileno" id="mobileno" type="text" maxlength="10" placeholder="Phone" required>
+            <div class="row">
+              <div class="input-field col s12">
+                <select name="department" id="department" onchange="generateEmpCode();" required>
+                  <option disabled selected>Department</option>
+                  <?php
+                    $deps = $dbh->query("SELECT DepartmentName FROM tbldepartments");
+                    foreach ($deps as $d) {
+                      echo "<option>".htmlentities($d['DepartmentName'])."</option>";
+                    }
+                  ?>
+                </select>
+              </div>
             </div>
-            <div class="input-field col s12">
-              <input name="address" id="address" type="text" placeholder="Address" required>
+            <div class="row">
+              <div class="input-field col m6 s12">
+                <input id="pwd" name="password" type="password" placeholder="Password" required>
+              </div>
+              <div class="input-field col m6 s12">
+                <input name="confirmpassword" id="confirmpassword" type="password" placeholder="Confirm Password" required>
+              </div>
             </div>
-            <!-- Location -->
-            <div class="input-field col m6 s12">
-              <select name="city" id="city" required>
-                <option disabled selected>City/Town</option>
-                <option>Harare</option>
-                <option>Bulawayo</option>
-              </select>
-            </div>
-            <div class="input-field col m6 s12">
-              <select name="country" id="country" required>
-                <option value="Zimbabwe" selected>Zimbabwe</option>
-              </select>
-            </div>
-            <!-- Department -->
-            <div class="input-field col s12">
-              <select name="department" id="department" onchange="generateEmpCode();" required>
-                <option disabled selected>Department</option>
-                <?php
-                  $deps = $dbh->query("SELECT DepartmentName FROM tbldepartments");
-                  foreach ($deps as $d) {
-                    echo "<option>".htmlentities($d['DepartmentName'])."</option>";
-                  }
-                ?>
-              </select>
-            </div>
-            <!-- Password -->
-            <div class="input-field col m6 s12">
-              <input id="pwd" name="password" type="password" placeholder="Password" required>
-            </div>
-            <div class="input-field col m6 s12">
-              <input name="confirmpassword" id="confirmpassword" type="password" placeholder="Confirm Password" required>
-            </div>
-            <!-- CSRF Token -->
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-            <!-- Submit -->
-            <div class="input-field col s12">
-              <button type="submit" name="add" class="btn indigo">Add Employee</button>
+            <div class="row">
+              <div class="input-field col s12">
+                <button type="submit" name="add" class="btn indigo">Add Employee</button>
+              </div>
             </div>
           </form>
         </div>
