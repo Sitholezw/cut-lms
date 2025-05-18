@@ -90,9 +90,26 @@ ob_end_flush();
     padding: 20px 8px 16px 8px;
   }
 }
+
+/* Reset default margins and prevent horizontal overflow */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Footer styling */
+footer {
+  width: 100%;
+  background-color: #3f51b5; /* Adjust to your desired color */
+  padding: 20px 0;
+  color: white;
+}
+
   </style>
 </head>
 <body>
+    
   <main class="container">
     <div class="row">
       <div class="col s12 m8 l6 offset-m2 offset-l3">
@@ -145,5 +162,33 @@ ob_end_flush();
       return true;
     }
   </script>
+
+  <footer class="page-footer" style="background-color: #3f51b5; color: white; padding: 20px 0; margin-top: 0; z-index: 1000;">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6">
+                <h6>Contact Us</h6>
+                <p>
+                    Chinhoyi University of Technology<br>
+                    Private Bag 7724, Chinhoyi, Zimbabwe<br>
+                    Tel: +263 784840335<br>
+                    Email: <a href="mailto:techub@outlook.com" style="color: white;">techub@outlook.com</a>
+                </p>
+            </div>
+            <div class="col s12 m6 right-align">
+                <h6>Follow Us</h6>
+                <a href="https://facebook.com" target="_blank" style="color: white; margin-right: 15px;">Facebook</a>
+                <a href="https://twitter.com" target="_blank" style="color: white; margin-right: 15px;">Twitter</a>
+                <a href="https://instagram.com" target="_blank" style="color: white;">Instagram</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 center-align">
+                <p>© <?php echo date("Y"); ?> CUT LMS. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
