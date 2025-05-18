@@ -53,9 +53,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
   <meta charset="UTF-8">
   <title>Admin | Add Employee</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="CUT Leave Management System - Add Employee">
+  <meta name="keywords" content="admin,employee,cut,lms">
+  <meta name="author" content="Chinhoyi University of Technology">
+  <meta name="robots" content="noindex, nofollow">
+
   <!-- Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link href="../assets/images/favicon.png" rel="icon">
+  <link href="../assets/images/favicon.png" rel="apple-touch-icon">
+
+  <!-- Custom CSS -->
+  <link href="assets/css/alpha.min.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
+
   <style>
     .card { margin:20px auto; padding:20px; border-radius:8px;
       box-shadow:0 4px 8px rgba(0,0,0,0.1); }
