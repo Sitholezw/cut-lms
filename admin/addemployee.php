@@ -225,32 +225,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.sidenav');
-      var instances = M.Sidenav.init(elems);
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-      flatpickr("#start", {dateFormat:"Y-m-d", maxDate:"today"});
-      const selects = document.querySelectorAll('select');
-      M.FormSelect.init(selects);
-    });
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(elems, { edge: 'left', draggable: false });
+});
+document.addEventListener('DOMContentLoaded', () => {
+  flatpickr("#start", {dateFormat:"Y-m-d", maxDate:"today"});
+  const selects = document.querySelectorAll('select');
+  M.FormSelect.init(selects);
+});
 
-    function generateEmpCode() {
-      const dept = document.querySelector('[name=department]').value.slice(0,3).toUpperCase();
-      const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
-      const rand = Math.floor(Math.random()*9000+1000);
-      document.getElementById('empcode').value = `${dept}-${date}-${rand}`;
-    }
+function generateEmpCode() {
+  const dept = document.querySelector('[name=department]').value.slice(0,3).toUpperCase();
+  const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
+  const rand = Math.floor(Math.random()*9000+1000);
+  document.getElementById('empcode').value = `${dept}-${date}-${rand}`;
+}
 
-    function validateForm() {
-      const pwd = document.getElementById('pwd').value;
-      const cpw = document.querySelector('[name=confirmpassword]').value;
-      if (pwd !== cpw) {
-        alert('Passwords do not match.');
-        return false;
-      }
-      return true;
-    }
+function validateForm() {
+  const pwd = document.getElementById('pwd').value;
+  const cpw = document.querySelector('[name=confirmpassword]').value;
+  if (pwd !== cpw) {
+    alert('Passwords do not match.');
+    return false;
+  }
+  return true;
+}
   </script>
 </body>
 </html>
