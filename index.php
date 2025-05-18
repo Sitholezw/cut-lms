@@ -79,12 +79,23 @@ ob_end_flush();
   <style>
     body { background: url('assets/images/background.jpg') center/cover no-repeat; }
     .card { margin-top: 5%; border-radius: 8px; }
+    .card-content {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 32px 32px 24px 32px;
+}
+@media (max-width: 600px) {
+  .card-content {
+    max-width: 100%;
+    padding: 20px 8px 16px 8px;
+  }
+}
   </style>
 </head>
 <body>
   <main class="container">
     <div class="row">
-      <div class="col s12 m6 l4 offset-l4">
+      <div class="col s12 m8 l6 offset-m2 offset-l3">
         <div class="card white">
           <div class="card-content">
             <!-- Logo inside card-content -->
