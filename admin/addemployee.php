@@ -102,16 +102,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
         padding: 16px 8px;
       }
     }
+    .fixed-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow-y: auto;
+    } 
   </style>
 </head>
 <body>
   <?php include('includes/header.php');?>
 
-  <div class="sidenav sidenav-fixed">
+  <!-- Sidebar: fixed-sidebar class only here -->
+  <div class="sidenav sidenav-fixed fixed-sidebar">
     <?php include('includes/sidebar.php');?>
   </div>
 
-  <div class="mn-content fixed-sidebar">
+  <!-- Main content: no fixed-sidebar class -->
+  <div class="mn-content">
     <main class="mn-inner">
       <div class="row">
         <div class="col s12 m10 l8 offset-m1 offset-l2">
@@ -210,37 +220,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
     </main>
   </div>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems);
-      });
-      document.addEventListener('DOMContentLoaded', () => {
-        flatpickr("#start", {dateFormat:"Y-m-d", maxDate:"today"});
-        const selects = document.querySelectorAll('select');
-        M.FormSelect.init(selects);
-      });
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      flatpickr("#start", {dateFormat:"Y-m-d", maxDate:"today"});
+      const selects = document.querySelectorAll('select');
+      M.FormSelect.init(selects);
+    });
 
-      function generateEmpCode() {
-        const dept = document.querySelector('[name=department]').value.slice(0,3).toUpperCase();
-        const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
-        const rand = Math.floor(Math.random()*9000+1000);
-        document.getElementById('empcode').value = `${dept}-${date}-${rand}`;
-      }
+    function generateEmpCode() {
+      const dept = document.querySelector('[name=department]').value.slice(0,3).toUpperCase();
+      const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
+      const rand = Math.floor(Math.random()*9000+1000);
+      document.getElementById('empcode').value = `${dept}-${date}-${rand}`;
+    }
 
-      function validateForm() {
-        const pwd = document.getElementById('pwd').value;
-        const cpw = document.querySelector('[name=confirmpassword]').value;
-        if (pwd !== cpw) {
-          alert('Passwords do not match.');
-          return false;
-        }
-        return true;
+    function validateForm() {
+      const pwd = document.getElementById('pwd').value;
+      const cpw = document.querySelector('[name=confirmpassword]').value;
+      if (pwd !== cpw) {
+        alert('Passwords do not match.');
+        return false;
       }
-    </script>
-  </body>
+      return true;
+    }
+  </script>
+</body>
 </html>
