@@ -50,17 +50,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin | Add Employee</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="CUT Leave Management System - Add Employee">
-  <meta name="keywords" content="admin,employee,cut,lms">
-  <meta name="author" content="Chinhoyi University of Technology">
-  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Title -->
+    <title>CUT | Add Employee</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="UTF-8">
+    <meta name="description" content="Responsive Admin Dashboard Template" />
+    <meta name="keywords" content="admin,dashboard" />
+    <meta name="author" content="Steelcoders" />
 
   <!-- Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="../assets/css/addemployee.css">
 
   <!-- Google Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -73,52 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
   <link href="assets/css/alpha.min.css" rel="stylesheet" type="text/css"/>
   <link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
 
-  <style>
-    .card { margin:20px auto; padding:20px; border-radius:8px;
-      box-shadow:0 4px 8px rgba(0,0,0,0.1); }
-    .errorWrap { color:#D8000C; background:#FFBABA;
-      padding:10px; margin-bottom:20px; }
-    .succWrap { color:#4F8A10; background:#DFF2BF;
-      padding:10px; margin-bottom:20px; }
-    .sidenav.sidenav-fixed {
-      width: 250px;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      z-index: 1000;
-    }
-    main.mn-inner {
-      margin-left: 250px; /* Same as sidebar width */
-      padding: 32px 16px;
-    }
-    @media (max-width: 992px) {
-      .sidenav.sidenav-fixed {
-        position: relative;
-        width: 100%;
-        height: auto;
-      }
-      main.mn-inner {
-        margin-left: 0;
-        padding: 16px 8px;
-      }
-    }
-    .fixed-sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      overflow-y: auto;
-    } 
-  </style>
+ 
 </head>
 <body>
-  <?php include('includes/header.php');?>
-
-  <!-- Sidebar: fixed-sidebar class only here -->
-  <div class="sidenav sidenav-fixed fixed-sidebar">
-    <?php include('includes/sidebar.php');?>
-  </div>
+  
 
   <!-- Main content: no fixed-sidebar class -->
   <div class="mn-content">

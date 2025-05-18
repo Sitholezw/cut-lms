@@ -22,8 +22,8 @@ if (isset($_POST['submit'])) {
     $email = filter_var($_POST['emailid'], FILTER_SANITIZE_EMAIL);
 
     // Validate Employee ID length
-    if (strlen($empid) < 4) {
-        $error = "Employee ID must be at least 4 characters long.";
+    if (strlen($empid) < 10) {
+        $error = "Employee ID must be at least 10 characters long.";
     }
     // Validate email format
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -185,9 +185,9 @@ if (isset($_POST['submit'])) {
         const empid = document.getElementById('empid').value;
         const email = document.getElementById('emailid').value;
 
-        // Check if Employee ID is at least 4 characters
-        if (empid.length < 4) {
-            alert('Employee ID must be at least 4 characters long.');
+        // Check if Employee ID is at least 10 characters
+        if (empid.length < 10) {
+            alert('Employee ID must be at least 10 characters long.');
             return false;
         }
 
