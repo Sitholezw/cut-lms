@@ -1,7 +1,7 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
 include('includes/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
@@ -48,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
             header("Location: manageemployee.php");
             exit;
         } else {
-            $errorInfo = $stmt->errorInfo();
-            $error = "Failed to add employee. Error: " . $errorInfo[2];
+            // Do not show detailed error to the browser
+            $error = "Failed to add employee.";
         }
     }
 }
@@ -171,10 +171,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        flatpickr("#start", { dateFormat: "Y-m-d", maxDate: "today" });
-        M.FormSelect.init(document.querySelectorAll('select'));
-    });
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize Materialize selects
+  M.FormSelect.init(document.querySelectorAll('select'));
+  // Initialize flatpickr
+  flatpickr("#start", { dateFormat: "Y-m-d", maxDate: "today" });
+});
 
     function generateEmpCode() {
         const dept = document.querySelector('[name=department]').value.slice(0, 3).toUpperCase();
