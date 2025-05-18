@@ -31,12 +31,14 @@ if (isset($_POST['signin'])) {
             foreach ($results as $result) {
                 $status = $result->Status;
                 $_SESSION['eid'] = $result->id;
-                if (password_verify($password, $result->Password)) {
+                // If your passwords are stored with md5, use md5 check. If with password_hash, use password_verify.
+                if (md5($password) === $result->Password) {
                     if ($status == 0) {
                         $loginError = "Your account is inactive. Please contact admin.";
                     } else {
                         $_SESSION['emplogin'] = $_POST['username'];
-                        echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
+                        header("Location: dashboard.php");
+                        exit;
                     }
                 } else {
                     $loginError = "Invalid email or password.";
@@ -47,7 +49,6 @@ if (isset($_POST['signin'])) {
         }
     }
 }
-
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -127,9 +128,9 @@ if (isset($_POST['signin'])) {
                             <span class="card-title" style="font-size: 24px; font-weight: bold; color: #3f51b5; text-align: center; display: block; margin-bottom: 20px;">
                                 Staff Login
                             </span>
-                            <?php if ($msg) { ?>
+                            <?php if (!empty($loginError)) { ?>
                                 <div class="card-panel red lighten-4 red-text text-darken-4" style="border-radius: 8px; padding: 10px;">
-                                    <strong>Error:</strong> <?php echo htmlentities($msg); ?>
+                                    <strong>Error:</strong> <?php echo htmlentities($loginError); ?>
                                 </div>
                             <?php } ?>
                             <form class="col s12" name="signin" method="post" onsubmit="return validateForm();" style="margin-top: 20px;">
