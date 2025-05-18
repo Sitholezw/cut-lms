@@ -36,7 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
         ':password' => $password
     ]);
     if ($result) {
-        $msg = "Employee record added successfully.";
+        // Redirect to manageemployee.php after successful insert
+        header("Location: manageemployee.php");
+        exit;
     } else {
         $errorInfo = $stmt->errorInfo();
         $error = "Failed to add employee. Error: " . $errorInfo[2];
@@ -61,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
 
   
 </head>
-<body>
-  
+<body class="background">
+    
 
 <div class="card">
     <h4 class="center-align">Add Employee</h4>
