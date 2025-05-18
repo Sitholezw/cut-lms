@@ -105,134 +105,138 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
   </style>
 </head>
 <body>
-  <main class="mn-inner">
-    <div class="row">
-      <div class="col s12 m10 l8 offset-m1 offset-l2">
-        <div class="card">
-          <h4 class="center-align">Add Employee</h4>
-          <?php if (!empty($error)): ?>
-            <div class="errorWrap"><strong>ERROR:</strong> <?= $error ?></div>
-          <?php elseif (!empty($msg)): ?>
-            <div class="succWrap"><strong>SUCCESS:</strong> <?= $msg ?></div>
-          <?php endif; ?>
+  <?php include('includes/header.php');?>
+  <?php include('includes/sidebar.php');?>
 
-          <form method="post" onsubmit="return validateForm();">
-            <div class="row">
-              <div class="input-field col s12">
-                <input name="empcode" id="empcode" type="text" placeholder="Emp. Code (auto-gen)" readonly required>
+  <div class="mn-content fixed-sidebar">
+    <main class="mn-inner">
+      <div class="row">
+        <div class="col s12 m10 l8 offset-m1 offset-l2">
+          <div class="card">
+            <h4 class="center-align">Add Employee</h4>
+            <?php if (!empty($error)): ?>
+              <div class="errorWrap"><strong>ERROR:</strong> <?= $error ?></div>
+            <?php elseif (!empty($msg)): ?>
+              <div class="succWrap"><strong>SUCCESS:</strong> <?= $msg ?></div>
+            <?php endif; ?>
+
+            <form method="post" onsubmit="return validateForm();">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input name="empcode" id="empcode" type="text" placeholder="Emp. Code (auto-gen)" readonly required>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field col m6 s12">
-                <input name="firstName" id="firstName" type="text" placeholder="First Name" required>
+              <div class="row">
+                <div class="input-field col m6 s12">
+                  <input name="firstName" id="firstName" type="text" placeholder="First Name" required>
+                </div>
+                <div class="input-field col m6 s12">
+                  <input name="lastName" id="lastName" type="text" placeholder="Last Name" required>
+                </div>
               </div>
-              <div class="input-field col m6 s12">
-                <input name="lastName" id="lastName" type="text" placeholder="Last Name" required>
+              <div class="row">
+                <div class="input-field col m6 s12">
+                  <input id="start" name="dob" type="text" placeholder="Date of Birth" required>
+                </div>
+                <div class="input-field col m6 s12">
+                  <select name="gender" id="gender" required>
+                    <option disabled selected>Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field col m6 s12">
-                <input id="start" name="dob" type="text" placeholder="Date of Birth" required>
+              <div class="row">
+                <div class="input-field col m6 s12">
+                  <input name="email" id="email" type="email" placeholder="Email" required>
+                </div>
+                <div class="input-field col m6 s12">
+                  <input name="mobileno" id="mobileno" type="text" maxlength="10" placeholder="Phone" required>
+                </div>
               </div>
-              <div class="input-field col m6 s12">
-                <select name="gender" id="gender" required>
-                  <option disabled selected>Gender</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                </select>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input name="address" id="address" type="text" placeholder="Address" required>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field col m6 s12">
-                <input name="email" id="email" type="email" placeholder="Email" required>
+              <div class="row">
+                <div class="input-field col m6 s12">
+                  <select name="city" id="city" required>
+                    <option disabled selected>City/Town</option>
+                    <option>Harare</option>
+                    <option>Bulawayo</option>
+                  </select>
+                </div>
+                <div class="input-field col m6 s12">
+                  <select name="country" id="country" required>
+                    <option value="Zimbabwe" selected>Zimbabwe</option>
+                  </select>
+                </div>
               </div>
-              <div class="input-field col m6 s12">
-                <input name="mobileno" id="mobileno" type="text" maxlength="10" placeholder="Phone" required>
+              <div class="row">
+                <div class="input-field col s12">
+                  <select name="department" id="department" onchange="generateEmpCode();" required>
+                    <option disabled selected>Department</option>
+                    <?php
+                      $deps = $dbh->query("SELECT DepartmentName FROM tbldepartments");
+                      foreach ($deps as $d) {
+                        echo "<option>".htmlentities($d['DepartmentName'])."</option>";
+                      }
+                    ?>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input name="address" id="address" type="text" placeholder="Address" required>
+              <div class="row">
+                <div class="input-field col m6 s12">
+                  <input id="pwd" name="password" type="password" placeholder="Password" required>
+                </div>
+                <div class="input-field col m6 s12">
+                  <input name="confirmpassword" id="confirmpassword" type="password" placeholder="Confirm Password" required>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field col m6 s12">
-                <select name="city" id="city" required>
-                  <option disabled selected>City/Town</option>
-                  <option>Harare</option>
-                  <option>Bulawayo</option>
-                </select>
+              <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+              <div class="row">
+                <div class="input-field col s12">
+                  <button type="submit" name="add" class="btn indigo">Add Employee</button>
+                </div>
               </div>
-              <div class="input-field col m6 s12">
-                <select name="country" id="country" required>
-                  <option value="Zimbabwe" selected>Zimbabwe</option>
-                </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <select name="department" id="department" onchange="generateEmpCode();" required>
-                  <option disabled selected>Department</option>
-                  <?php
-                    $deps = $dbh->query("SELECT DepartmentName FROM tbldepartments");
-                    foreach ($deps as $d) {
-                      echo "<option>".htmlentities($d['DepartmentName'])."</option>";
-                    }
-                  ?>
-                </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col m6 s12">
-                <input id="pwd" name="password" type="password" placeholder="Password" required>
-              </div>
-              <div class="input-field col m6 s12">
-                <input name="confirmpassword" id="confirmpassword" type="password" placeholder="Confirm Password" required>
-              </div>
-            </div>
-            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-            <div class="row">
-              <div class="input-field col s12">
-                <button type="submit" name="add" class="btn indigo">Add Employee</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.sidenav');
-      var instances = M.Sidenav.init(elems);
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-      flatpickr("#start", {dateFormat:"Y-m-d", maxDate:"today"});
-      const selects = document.querySelectorAll('select');
-      M.FormSelect.init(selects);
-    });
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+      });
+      document.addEventListener('DOMContentLoaded', () => {
+        flatpickr("#start", {dateFormat:"Y-m-d", maxDate:"today"});
+        const selects = document.querySelectorAll('select');
+        M.FormSelect.init(selects);
+      });
 
-    function generateEmpCode() {
-      const dept = document.querySelector('[name=department]').value.slice(0,3).toUpperCase();
-      const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
-      const rand = Math.floor(Math.random()*9000+1000);
-      document.getElementById('empcode').value = `${dept}-${date}-${rand}`;
-    }
-
-    function validateForm() {
-      const pwd = document.getElementById('pwd').value;
-      const cpw = document.querySelector('[name=confirmpassword]').value;
-      if (pwd !== cpw) {
-        alert('Passwords do not match.');
-        return false;
+      function generateEmpCode() {
+        const dept = document.querySelector('[name=department]').value.slice(0,3).toUpperCase();
+        const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
+        const rand = Math.floor(Math.random()*9000+1000);
+        document.getElementById('empcode').value = `${dept}-${date}-${rand}`;
       }
-      return true;
-    }
-  </script>
-</body>
+
+      function validateForm() {
+        const pwd = document.getElementById('pwd').value;
+        const cpw = document.querySelector('[name=confirmpassword]').value;
+        if (pwd !== cpw) {
+          alert('Passwords do not match.');
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </body>
 </html>
