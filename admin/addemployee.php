@@ -3,10 +3,8 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 include('includes/config.php');
-include('includes/header.php');
-include('includes/sidebar.php');
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
     // Example: collect and sanitize input
