@@ -18,30 +18,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
     $department = $_POST['department'];
     $password = md5($_POST['password']); // Use password_hash in production
 
-    $sql = "INSERT INTO tblemployees (EmpId, FirstName, LastName, Dob, Gender, EmailId, Phonenumber, Address, City, Country, Department, Password)
-            VALUES (:empcode, :firstName, :lastName, :dob, :gender, :email, :mobileno, :address, :city, :country, :department, :password)";
-    $stmt = $dbh->prepare($sql);
-    $result = $stmt->execute([
-        ':empcode' => $empcode,
-        ':firstName' => $firstName,
-        ':lastName' => $lastName,
-        ':dob' => $dob,
-        ':gender' => $gender,
-        ':email' => $email,
-        ':mobileno' => $mobileno,
-        ':address' => $address,
-        ':city' => $city,
-        ':country' => $country,
-        ':department' => $department,
-        ':password' => $password
-    ]);
-    if ($result) {
-        // Redirect to manageemployee.php after successful insert
-        header("Location: manageemployee.php");
-        exit;
+    // Calculate age
+    $dobDate = new DateTime($dob);
+    $today = new DateTime();
+    $age = $today->diff($dobDate)->y;
+
+    if ($age < 18) {
+        $error = "Employee must be at least 18 years old.";
     } else {
-        $errorInfo = $stmt->errorInfo();
-        $error = "Failed to add employee. Error: " . $errorInfo[2];
+        $sql = "INSERT INTO tblemployees (EmpId, FirstName, LastName, Dob, Gender, EmailId, Phonenumber, Address, City, Country, Department, Password)
+                VALUES (:empcode, :firstName, :lastName, :dob, :gender, :email, :mobileno, :address, :city, :country, :department, :password)";
+        $stmt = $dbh->prepare($sql);
+        $result = $stmt->execute([
+            ':empcode' => $empcode,
+            ':firstName' => $firstName,
+            ':lastName' => $lastName,
+            ':dob' => $dob,
+            ':gender' => $gender,
+            ':email' => $email,
+            ':mobileno' => $mobileno,
+            ':address' => $address,
+            ':city' => $city,
+            ':country' => $country,
+            ':department' => $department,
+            ':password' => $password
+        ]);
+        if ($result) {
+            // Redirect to manageemployee.php after successful insert
+            header("Location: manageemployee.php");
+            exit;
+        } else {
+            $errorInfo = $stmt->errorInfo();
+            $error = "Failed to add employee. Error: " . $errorInfo[2];
+        }
     }
 }
 ?>
