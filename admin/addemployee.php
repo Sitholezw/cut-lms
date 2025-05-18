@@ -49,44 +49,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
     <meta charset="UTF-8">
     <title>CUT | Add Employee</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Materialize & Flatpickr -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f5f5f5;
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .card {
-            width: 100%;
-            max-width: 700px;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-        }
-        .errorWrap {
-            color: #D8000C;
-            background: #FFBABA;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-        .succWrap {
-            color: #4F8A10;
-            background: #DFF2BF;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-        h4.center-align {
-            margin-bottom: 30px;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">  
+    <link rel="stylesheet" href="../assets/css/addemployee.css">
+
+     <!-- favicoins -->
+    <link href="../assets/images/favicon.png" rel="icon">
+    <link href="../assets/images/favicon.png" rel="apple-touch-icon">
+
+  
 </head>
 <body>
+  
 
 <div class="card">
     <h4 class="center-align">Add Employee</h4>

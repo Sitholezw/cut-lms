@@ -1,52 +1,31 @@
-/* Reset default margins and prevent horizontal overflow */
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
-  background: #f5f5f5; /* Light background for contrast */
-}
-
-/* Container to center content */
-.container {
-  max-width: 600px;
-  margin: 5% auto;
-  padding: 20px;
-}
-
-/* Card styling with box shadow */
-.card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 32px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .container {
-    margin: 10% 5%;
-    padding: 16px;
-  }
-
-  .card {
-    padding: 24px;
-  }
-}
-
-/* Feedback message styles */
-.errorWrap {
-  color: #D8000C;
-  background-color: #FFBABA;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-}
-
-.succWrap {
-  color: #4F8A10;
-  background-color: #DFF2BF;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-}
+body {
+            background-color: #f5f5f5;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .card {
+            width: 100%;
+            max-width: 700px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        .errorWrap {
+            color: #D8000C;
+            background: #FFBABA;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .succWrap {
+            color: #4F8A10;
+            background: #DFF2BF;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        h4.center-align {
+            margin-bottom: 30px;
+        }
