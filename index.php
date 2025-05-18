@@ -11,6 +11,7 @@ ini_set('display_errors', 1);
 
 include('includes/config.php');
 
+
 // 3. CSRF token generation if missing
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -71,42 +72,13 @@ ob_end_flush();
   <!-- Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <link href="assets/css/alpha.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets\css\index.css">
 
    <!-- favicoins -->
         <link href="assets\images\favicon.png" rel="icon">
         <link href="assets\images\favicon.png" rel="apple-touch-icon">
         
-  <style>
-    body { background: url('assets/images/background.jpg') center/cover no-repeat; }
-    .card { margin-top: 5%; border-radius: 8px; }
-    .card-content {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 32px 32px 24px 32px;
-}
-@media (max-width: 600px) {
-  .card-content {
-    max-width: 100%;
-    padding: 20px 8px 16px 8px;
-  }
-}
-
-/* Reset default margins and prevent horizontal overflow */
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-/* Footer styling */
-footer {
-  width: 100%;
-  background-color: #3f51b5; /* Adjust to your desired color */
-  padding: 20px 0;
-  color: white;
-}
-
-  </style>
+ 
 </head>
 <body>
     
@@ -163,32 +135,7 @@ footer {
     }
   </script>
 
-  <footer class="page-footer" style="background-color: #3f51b5; color: white; padding: 20px 0; margin-top: 0; z-index: 1000;">
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m6">
-                <h6>Contact Us</h6>
-                <p>
-                    Chinhoyi University of Technology<br>
-                    Private Bag 7724, Chinhoyi, Zimbabwe<br>
-                    Tel: +263 784840335<br>
-                    Email: <a href="mailto:techub@outlook.com" style="color: white;">techub@outlook.com</a>
-                </p>
-            </div>
-            <div class="col s12 m6 right-align">
-                <h6>Follow Us</h6>
-                <a href="https://facebook.com" target="_blank" style="color: white; margin-right: 15px;">Facebook</a>
-                <a href="https://twitter.com" target="_blank" style="color: white; margin-right: 15px;">Twitter</a>
-                <a href="https://instagram.com" target="_blank" style="color: white;">Instagram</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 center-align">
-                <p>© <?php echo date("Y"); ?> CUT LMS. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
-</footer>
+ <?php include('includes/footer.php'); ?>
 
 </body>
 </html>

@@ -1,0 +1,48 @@
+/* Reset default margins and prevent horizontal overflow */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Background image for the body */
+body {
+  background: url('../images/background.jpg') center/cover no-repeat;
+}
+
+/* Card styling */
+.card {
+  margin-top: 5%;
+  border-radius: 8px;
+}
+
+/* Card content styling */
+.card-content {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 32px 32px 24px 32px;
+}
+
+@media (max-width: 600px) {
+  .card-content {
+    max-width: 100%;
+    padding: 20px 8px 16px 8px;
+  }
+}
+
+/* Footer styling */
+.page-footer {
+  background-color: #3f51b5 !important;
+  color: white;
+  padding: 20px 0;
+  width: 100%;
+  position: relative;
+  margin-top: auto;
+}
