@@ -109,7 +109,7 @@ foreach($results as $result)
                                         <tr>
                                             <td style="font-size:16px;"> <b>Employee Name :</b></td>
                                               <td><a href="editemployee.php?empid=<?php echo htmlentities($result->id);?>" target="_blank">
-                                                <?php echo htmlentities($result->FirstName." ".$result->LastName);?></a></td>
+                                                <?php echo htmlentities($result->FirstName); ?></a></td>
                                               <td style="font-size:16px;"><b>Emp Id :</b></td>
                                               <td><?php echo htmlentities($result->EmpId);?></td>
                                               <td style="font-size:16px;"><b>Gender :</b></td>
@@ -197,7 +197,7 @@ if($stats==0)
                                         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     </div>
     <div class="modal-footer" style="width:90%">
-       <input type="submit" class="waves-effect waves-light btn blue m-b-xs" name="update" value="Submit">
+       <input type="submit" class="waves-effect waves-light btn blue m-b-xs" name="update" value="Submit" onclick="return confirm('Are you sure you want to take this action?');">
     </div>
 
 </div>   
