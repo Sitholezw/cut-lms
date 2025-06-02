@@ -144,11 +144,11 @@ foreach($results as $result)
 <td style="font-size:16px;"><b>leave Status :</b></td>
 <td colspan="5"><?php $stats=$result->Status;
 if($stats==1){
-    echo '<span class="badge green white-text">Approved</span>';
+    echo '<div class="chip green white-text">Approved</div>';
 } elseif($stats==2) {
-    echo '<span class="badge red white-text">Not Approved</span>';
+    echo '<div class="chip red white-text">Not Approved</div>';
 } elseif($stats==0) {
-    echo '<span class="badge blue white-text">Waiting for approval</span>';
+    echo '<div class="chip blue white-text">Waiting for approval</div>';
 }
 ?></td>
 </tr>
@@ -185,21 +185,26 @@ if($stats==0)
  <td colspan="5">
   <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Take&nbsp;Action</a>
 <form name="adminaction" method="post">
-<div id="modal1" class="modal modal-fixed-footer" style="height: 60%">
-    <div class="modal-content" style="width:90%">
-        <h4>Leave take action</h4>
-          <select class="browser-default" name="status" required="">
-                                            <option value="">Choose your option</option>
-                                            <option value="1">Approved</option>
-                                            <option value="2">Not Approved</option>
-                                        </select></p>
-                                        <p><textarea id="textarea1" name="description" class="materialize-textarea" name="description" placeholder="Description" length="500" maxlength="500" required></textarea></p>
-                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h5>Take Action on Leave</h5>
+    <div class="input-field">
+      <select class="browser-default" name="status" required>
+        <option value="">Choose your option</option>
+        <option value="1">Approved</option>
+        <option value="2">Not Approved</option>
+      </select>
     </div>
-    <div class="modal-footer" style="width:90%">
-       <input type="submit" class="waves-effect waves-light btn blue m-b-xs" name="update" value="Submit" onclick="return confirm('Are you sure you want to take this action?');">
+    <div class="input-field">
+      <textarea id="textarea1" name="description" class="materialize-textarea validate" maxlength="500" required></textarea>
+      <label for="textarea1">Description</label>
+      <span class="helper-text" data-length="500">Max 500 characters</span>
     </div>
-
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="waves-effect waves-light btn blue" name="update" onclick="return confirm('Are you sure you want to take this action?');">Submit</button>
+  </div>
 </div>   
 
  </td>
