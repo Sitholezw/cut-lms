@@ -22,6 +22,9 @@ $query->execute();
 // code for action taken on leave
 if(isset($_POST['update']))
 { 
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die('CSRF token validation failed');
+    }
 $did=intval($_GET['leaveid']);
 $description=$_POST['description'];
 $status=$_POST['status'];   
@@ -77,7 +80,7 @@ $msg="Leave updated Successfully";
             <main class="mn-inner">
                 <div class="row">
                     <div class="col s12">
-                        <div class="page-title" style="font-size:24px;">Leave Details</div>
+                        <div class="page-title leave-title">Leave Details</div>
                     </div>
                    
                     <div class="col s12 m12 l12">
@@ -141,14 +144,13 @@ foreach($results as $result)
 <td style="font-size:16px;"><b>leave Status :</b></td>
 <td colspan="5"><?php $stats=$result->Status;
 if($stats==1){
-?>
-<span style="color: green">Approved</span>
- <?php } if($stats==2)  { ?>
-<span style="color: red">Not Approved</span>
-<?php } if($stats==0)  { ?>
- <span style="color: blue">waiting for approval</span>
- <?php } ?>
-</td>
+    echo '<span class="badge green white-text">Approved</span>';
+} elseif($stats==2) {
+    echo '<span class="badge red white-text">Not Approved</span>';
+} elseif($stats==0) {
+    echo '<span class="badge blue white-text">Waiting for approval</span>';
+}
+?></td>
 </tr>
 
 <tr>
@@ -192,6 +194,7 @@ if($stats==0)
                                             <option value="2">Not Approved</option>
                                         </select></p>
                                         <p><textarea id="textarea1" name="description" class="materialize-textarea" name="description" placeholder="Description" length="500" maxlength="500" required></textarea></p>
+                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     </div>
     <div class="modal-footer" style="width:90%">
        <input type="submit" class="waves-effect waves-light btn blue m-b-xs" name="update" value="Submit">
@@ -229,3 +232,8 @@ if($stats==0)
     </body>
 </html>
 <?php } ?>
+<?php
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+?>
