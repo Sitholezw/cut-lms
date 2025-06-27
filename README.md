@@ -1,34 +1,64 @@
-CHINHOYI UNIVERSITY-LEAVE MANAGMENT SYSYTEM (cut-lms)
+# CHINHOYI UNIVERSITY - LEAVE MANAGEMENT SYSTEM (CUT-LMS)
 
-Description
+## Description
 
-Cut LMS is a leave management system designed to facilitate online education.
-Installation Instructions
+CUT-LMS is a web-based Leave Management System designed for Chinhoyi University of Technology. It streamlines the process of applying for, approving, and managing staff leave requests. The system is built with PHP, MySQL, and Materialize CSS for a modern, responsive user experience.
 
-    Install XAMPP
-    Download and install XAMPP on your machine from [Apache Friends].
+---
 
-    Run XAMPP with Administrative Rights
-    Right-click on xampp.exe and select "Run as administrator" to ensure proper permissions.
+## Features
 
-    Start Apache and MySQL
-    Open the XAMPP Control Panel and click on the "Start" buttons for both Apache and MySQL.
+- Staff leave application and tracking
+- Admin leave approval and management
+- Department management
+- Secure authentication (with CSRF protection)
+- Responsive design for desktop and mobile
+- User-friendly dashboard and notifications
 
-    Set Up Database
-    Place the database files in the root directory of your project. Ensure that the database is correctly configured.
+---
 
-    Access the System
-    Open a web browser and navigate to http://localhost/cut-lms to access the Cut LMS system.
+## Installation Instructions
 
-    Enjoy the System!
-    You are now ready to use Cut LMS. Happy learning!
+1. **Install XAMPP**  
+   Download and install XAMPP from [Apache Friends](https://www.apachefriends.org/).
 
-Contributing
+2. **Run XAMPP as Administrator**  
+   Right-click on `xampp.exe` and select **Run as administrator** for proper permissions.
 
-Feel free to fork the repository and submit pull requests for improvements.
-License
+3. **Start Apache and MySQL**  
+   Open the XAMPP Control Panel and click **Start** for both Apache and MySQL.
+
+4. **Set Up the Database**  
+   - Import the provided SQL database file (e.g., `cut-lms.sql`) into phpMyAdmin or via the MySQL command line.
+   - Place the project files in the `htdocs/cut-lms` directory.
+
+5. **Configure Database Connection**  
+   - Edit `includes/config.php` and update the database credentials if needed.
+
+6. **Access the System**  
+   - Open your browser and go to: [http://localhost/cut-lms](http://localhost/cut-lms)
+
+---
+
+## Usage
+
+- **Staff** can log in, apply for leave, and view leave status.
+- **Admins** can log in, view all leave requests, approve/decline requests, and manage employees and departments.
+
+---
+
+## Contributing
+
+Feel free to fork this repository and submit pull requests for improvements or bug fixes.
+
+---
+
+## License
 
 This project is licensed under the MIT License.
-Contact
+
+---
+
+## Contact
 
 For questions or feedback, please reach out to evidencefelixy11@gmail.com.
